@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  /* Paleta Medovik Mérida — Miel Dorada, Crema Pergamino, Cacao Spartak y Carmesí Imperial */
+  --bg:           #FBF7EF;
+  --bg-2:         #F4ECDC;
+  --surface:      #FFFDF9;
+  --surface-2:    #F7EFE0;
+
+  --ink:          #26160C;
+  --ink-2:        #4A3121;
+  --ink-3:        #7A5B43;
+  --ink-4:        #A68970;
+
+  /* Miel dorada / Caramelo artesanal */
+  --gold:         #C48324;
+  --gold-deep:    #9A6212;
+  --gold-soft:    #F6E7CC;
+
+  /* Carmesí Imperial Ruso (presente en el menú oficial y La Dulce Leyenda) */
+  --rose:         #7D2027;
+  --rose-deep:    #5E151B;
+  --rose-soft:    #F7E6E7;
+
+  --sage:         #2E6B47;
+  --sage-soft:    #E4F1E8;
+  --whatsapp:     #25D366;
+
+  --line:         rgba(74, 49, 33, 0.11);
+  --line-2:       rgba(74, 49, 33, 0.20);
+
+  --shadow-xs:    0 1px 2px rgba(38, 22, 12, 0.05);
+  --shadow-sm:    0 4px 14px -2px rgba(38, 22, 12, 0.07), 0 2px 4px -2px rgba(38, 22, 12, 0.04);
+  --shadow-md:    0 14px 34px -8px rgba(38, 22, 12, 0.12), 0 4px 10px -4px rgba(38, 22, 12, 0.05);
+  --shadow-lg:    0 28px 60px -16px rgba(38, 22, 12, 0.20), 0 8px 20px -6px rgba(38, 22, 12, 0.07);
+
+  /* Compatibilidad con clases de componentes compartidos */
+  --color-crema: #FBF7EF;
+  --color-crema-oscura: #F4ECDC;
+  --color-rosa-empolvado: #F2DFC4;
+  --color-rosa-profundo: #7D2027;
+  --color-rosa-intenso: #5E151B;
+  --color-dorado: #C48324;
+  --color-dorado-suave: #E6C48A;
+  --color-cacao: #26160C;
+  --color-cacao-suave: #5C3D28;
+  --color-blanco-calido: #FFFDF9;
+}
+
+@theme inline {
+  --color-crema: var(--color-crema);
+  --color-crema-oscura: var(--color-crema-oscura);
+  --color-rosa-empolvado: var(--color-rosa-empolvado);
+  --color-rosa-profundo: var(--color-rosa-profundo);
+  --color-rosa-intenso: var(--color-rosa-intenso);
+  --color-dorado: var(--color-dorado);
+  --color-dorado-suave: var(--color-dorado-suave);
+  --color-cacao: var(--color-cacao);
+  --color-cacao-suave: var(--color-cacao-suave);
+  --color-blanco-calido: var(--color-blanco-calido);
+
+  --font-serif: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-nunito), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-editorial {
+  font-family: var(--font-display);
+}
+
+/* Textura sutil de panal y miel cálida */
+.bg-honey-pattern {
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(196, 131, 36, 0.13) 0%, transparent 48%),
+    radial-gradient(circle at 84% 78%, rgba(125, 32, 39, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 45%, rgba(246, 231, 204, 0.5) 0%, transparent 65%);
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-crema);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rosa-empolvado);
+  border-radius: 9999px;
+  border: 2px solid var(--color-crema);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dorado);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

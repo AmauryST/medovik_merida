@@ -1,0 +1,213 @@
+[
+  {
+    "id": "medovik-clasico",
+    "name": "Medovik Clásico",
+    "subtitle": "El sabor de siempre ♡ · Receta imperial rusa de miel natural",
+    "short_description": "8 a 10 finas capas de galleta horneadas con miel natural de Yucatán y mantequilla auténtica, ensambladas con crema suave ligeramente ácida.",
+    "description": "La receta original que enamoró a la emperatriz Isabel en el siglo XVIII. Cada pastel se compone de finísimas capas de masa de miel caramelizada al horno una por una, intercaladas con nuestra crema artesanal suave y delicada que, tras horas de reposo en frío, se funde con las capas creando una textura aterciopelada única.",
+    "categoria": "clasico",
+    "price_cents": 50000,
+    "show_price": false,
+    "is_featured": true,
+    "image": "/images/producto-01.webp",
+    "gallery": [
+      "/images/producto-01.webp",
+      "/images/producto-04.webp",
+      "/assets/linea-clasico.webp"
+    ],
+    "alt": "Medovik Clásico — Pastel Ruso de Miel Natural en Mérida",
+    "story_badge": "Receta Imperial Original",
+    "intensity": "Dulzura equilibrada · Notas florales de miel tibia y crema fresca",
+    "layers_info": "8 a 10 capas finas horneadas individualmente y cubiertas con miga dorada de miel",
+    "ingredients": [
+      "Miel natural de abeja (100% pura, sin jarabes)",
+      "Mantequilla auténtica de vaca",
+      "Crema ácida y queso crema de alta calidad",
+      "Huevos frescos y harina seleccionada",
+      "Cero conservadores, saborizantes ni potenciadores artificiales"
+    ],
+    "pairing": "Ideal con café americano de especialidad, té negro ruso (Earl Grey / Assam) o infusión de manzanilla.",
+    "conservation": "Mantener en refrigeración (2 °C a 6 °C). Consumir preferentemente dentro de los 5 días posteriores a su entrega.",
+    "formats": [
+      {
+        "id": "clasico-rebanada",
+        "code": "rebanada",
+        "label": "Rebanada Individual (~180 g)",
+        "short_label": "Rebanada",
+        "weight": "~180 g",
+        "servings": "1 porción generosa",
+        "lead_time": "Sujeta a disponibilidad del día (consultar antes de pedir)",
+        "price_cents": 10000,
+        "price_delta_cents": -40000,
+        "show_price": false,
+        "image": "/images/producto-09.webp"
+      },
+      {
+        "id": "clasico-mediano",
+        "code": "mediano",
+        "label": "Pastel Mediano (~1,225 kg)",
+        "short_label": "Mediano (~1.225 kg)",
+        "weight": "~1,225 kg",
+        "servings": "8 a 10 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 50000,
+        "price_delta_cents": 0,
+        "show_price": false,
+        "image": "/images/producto-01.webp"
+      },
+      {
+        "id": "clasico-grande",
+        "code": "grande",
+        "label": "Pastel Grande (~2,45 kg)",
+        "short_label": "Grande (~2.45 kg)",
+        "weight": "~2,45 kg",
+        "servings": "16 a 20 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 100000,
+        "price_delta_cents": 50000,
+        "show_price": false,
+        "image": "/images/producto-05.webp"
+      }
+    ]
+  },
+  {
+    "id": "medovik-spartak",
+    "name": "Medovik Spartak",
+    "subtitle": "Intenso y delicioso ♡ · Miel, cacao real, ciruela pasa y nuez",
+    "short_description": "Capas profundas de miel y cacao real intercaladas con crema sedosa, trozos de ciruela pasa seleccionada y nuez tostada.",
+    "description": "La versión de cacao profundo del Medovik tradicional. Sus finas capas combinan el perfume de la miel natural con cacao auténtico sin alcalinizar, ensambladas una por una con crema suave, ciruelas pasas tiernas que aportan un acento frutal elegante y nueces seleccionadas ligeramente tostadas para un contraste crujiente inolvidable.",
+    "categoria": "spartak",
+    "price_cents": 60000,
+    "show_price": false,
+    "is_featured": true,
+    "image": "/images/producto-02.webp",
+    "gallery": [
+      "/images/producto-02.webp",
+      "/assets/linea-spartak.webp"
+    ],
+    "alt": "Medovik Spartak — Pastel Ruso de Miel, Cacao, Ciruela Pasa y Nuez",
+    "story_badge": "Especialidad de Cacao & Frutos Secos",
+    "intensity": "Cacao profundo · Contraste frutal de ciruela pasa y nuez tostada",
+    "layers_info": "8 a 10 capas oscuras de miel y cacao real con relleno de crema, ciruela pasa y nuez",
+    "ingredients": [
+      "Miel natural de abeja y cacao real de alta pureza",
+      "Ciruelas pasas seleccionadas y nueces enteras tostadas",
+      "Mantequilla de verdad, quesos y cremas naturales",
+      "Huevos frescos y harina seleccionada",
+      "Sin saborizantes artificiales ni conservadores"
+    ],
+    "pairing": "Marida de forma extraordinaria con espresso doble, cappuccino, vino tinto joven o digestivos.",
+    "conservation": "Mantener en refrigeración (2 °C a 6 °C). Sacar del refrigerador 10 minutos antes de servir para apreciar todas las notas del cacao.",
+    "formats": [
+      {
+        "id": "spartak-rebanada",
+        "code": "rebanada",
+        "label": "Rebanada Individual (~180 g)",
+        "short_label": "Rebanada",
+        "weight": "~180 g",
+        "servings": "1 porción generosa",
+        "lead_time": "Sujeta a disponibilidad del día (consultar antes de pedir)",
+        "price_cents": 10000,
+        "price_delta_cents": -50000,
+        "show_price": false,
+        "image": "/images/producto-10.webp"
+      },
+      {
+        "id": "spartak-mediano",
+        "code": "mediano",
+        "label": "Pastel Mediano (~1,225 kg)",
+        "short_label": "Mediano (~1.225 kg)",
+        "weight": "~1,225 kg",
+        "servings": "8 a 10 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 60000,
+        "price_delta_cents": 0,
+        "show_price": false,
+        "image": "/images/producto-02.webp"
+      },
+      {
+        "id": "spartak-grande",
+        "code": "grande",
+        "label": "Pastel Grande (~2,45 kg)",
+        "short_label": "Grande (~2.45 kg)",
+        "weight": "~2,45 kg",
+        "servings": "16 a 20 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 120000,
+        "price_delta_cents": 60000,
+        "show_price": false,
+        "image": "/images/producto-06.webp"
+      }
+    ]
+  },
+  {
+    "id": "medovik-caramelo-salado",
+    "name": "Medovik Caramelo Salado & Nuez Pecana",
+    "subtitle": "Equilibrio perfecto ♡ · Miel, caramelo salado artesanal y pecana crujiente",
+    "short_description": "Capas doradas de miel natural con crema sedosa, caramelo salado cocinado en casa a fuego lento y tropiezos crujientes de nuez pecana.",
+    "description": "Una creación pensada para quienes buscan el balance exacto entre dulzura y carácter. Nuestras finas capas de miel se ensamblan con crema fresca, un hilo generoso de caramelo salado elaborado artesanalmente con mantequilla real y flor de sal, y nuez pecana tostada que aporta textura y notas tostadas en cada bocado.",
+    "categoria": "caramelo-salado",
+    "price_cents": 60000,
+    "show_price": false,
+    "is_featured": true,
+    "image": "/images/producto-03.webp",
+    "gallery": [
+      "/images/producto-03.webp",
+      "/assets/linea-caramelo.webp"
+    ],
+    "alt": "Medovik Caramelo Salado y Nuez Pecana — Pastel Ruso de Miel en Mérida",
+    "story_badge": "Equilibrio Dulce-Salado & Pecana",
+    "intensity": "Contraste seductor · Caramelo a la mantequilla, toque de sal de mar y pecana crujiente",
+    "layers_info": "8 a 10 capas de miel natural con reducción artesanal de caramelo salado y nuez pecana",
+    "ingredients": [
+      "Miel natural de abeja y caramelo salado hecho en casa",
+      "Nuez pecana seleccionada y tostada al momento",
+      "Mantequilla de verdad, quesos y cremas de alta calidad",
+      "Toque sutil de sal de mar sin refinar",
+      "Sin conservadores, saborizantes ni jarabes industriales"
+    ],
+    "pairing": "Perfecto con cold brew, latte sin azúcar, té chai o como postre estelar en cenas especiales.",
+    "conservation": "Mantener en refrigeración (2 °C a 6 °C). Consumir dentro de los 5 días posteriores a su entrega.",
+    "formats": [
+      {
+        "id": "caramelo-rebanada",
+        "code": "rebanada",
+        "label": "Rebanada Individual (~180 g)",
+        "short_label": "Rebanada",
+        "weight": "~180 g",
+        "servings": "1 porción generosa",
+        "lead_time": "Sujeta a disponibilidad del día (consultar antes de pedir)",
+        "price_cents": 10000,
+        "price_delta_cents": -50000,
+        "show_price": false,
+        "image": "/images/producto-11.webp"
+      },
+      {
+        "id": "caramelo-mediano",
+        "code": "mediano",
+        "label": "Pastel Mediano (~1,225 kg)",
+        "short_label": "Mediano (~1.225 kg)",
+        "weight": "~1,225 kg",
+        "servings": "8 a 10 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 60000,
+        "price_delta_cents": 0,
+        "show_price": false,
+        "image": "/images/producto-03.webp"
+      },
+      {
+        "id": "caramelo-grande",
+        "code": "grande",
+        "label": "Pastel Grande (~2,45 kg)",
+        "short_label": "Grande (~2.45 kg)",
+        "weight": "~2,45 kg",
+        "servings": "16 a 20 porciones",
+        "lead_time": "Pedir al menos 2 días antes · 50% de anticipo",
+        "price_cents": 120000,
+        "price_delta_cents": 60000,
+        "show_price": false,
+        "image": "/images/producto-07.webp"
+      }
+    ]
+  }
+]

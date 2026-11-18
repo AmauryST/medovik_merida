@@ -1,0 +1,74 @@
+/*
+ * Base styles for the admin panel. Tailwind runs without preflight (the public
+ * site keeps its own design system), so the panel gets a small reset scoped to
+ * `.admin`, in the `base` layer so utilities still win.
+ */
+@layer base {
+  body:has(.admin) {
+    margin: 0;
+    background: #fafaf9;
+  }
+
+  .admin {
+    --brand: #B56576;
+    --brand-hover: #A8576A;
+    --ink: #212224;
+    --line: #e7e5e4;
+    min-height: 100dvh;
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .admin *,
+  .admin *::before,
+  .admin *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+
+  .admin button,
+  .admin input,
+  .admin select,
+  .admin textarea {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+  }
+
+  .admin button,
+  .admin label[for],
+  .admin [role="switch"] {
+    cursor: pointer;
+  }
+
+  .admin button:disabled {
+    cursor: default;
+  }
+
+  .admin img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .admin a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .admin ul,
+  .admin ol {
+    list-style: none;
+  }
+
+  .admin :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+

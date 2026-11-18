@@ -1,0 +1,45 @@
+{
+  "name": "medovik-merida",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Medovik Mérida — Pastel Ruso de Miel artesanal en Mérida, Yucatán, México. Clásico, Spartak y Caramelo Salado.",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "scripts": {
+    "dev": "next dev -p 3103",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit --singleThreaded",
+    "process:images": "tsx scripts/process-brand-images.ts",
+    "migrate:catalog": "tsx scripts/migrate-static-catalog.ts",
+    "seed:billboard": "tsx scripts/seed-billboard-and-featured.ts"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "@tailwindcss/node": "4.3.3",
+    "@vercel/analytics": "^2.0.1",
+    "magic-string": "0.30.21",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.53.2",
+    "server-only": "^0.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "postcss": "^8.5.32",
+    "sharp": "^0.35.2",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "ws": "^8.22.0"
+  }
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Pastel Ruso de Miel Medovik Mérida">
+  <rect width="300" height="400" fill="#F8F1E3"/>
+  <g fill="none" stroke="#C88A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Pedestal / Base del pastel -->
+    <path d="M60 310 C110 322 190 322 240 310" stroke-width="2.4" stroke="#8C4E16"/>
+    <path d="M130 318 L120 345 L180 345 L170 318" stroke="#8C4E16"/>
+    <path d="M100 345 L200 345" stroke-width="2.4" stroke="#8C4E16"/>
+
+    <!-- Cuerpo del Medovik (finas capas de miel y crema) -->
+    <path d="M80 306 L80 185 C80 185 110 198 150 198 C190 198 220 185 220 185 L220 306"/>
+    <path d="M80 306 C110 318 190 318 220 306"/>
+    <!-- Capas horizontales características del Medovik -->
+    <path d="M80 205 C110 216 190 216 220 205" stroke="#B87620" stroke-width="1.4" stroke-dasharray="3 2"/>
+    <path d="M80 225 C110 236 190 236 220 225" stroke="#B87620" stroke-width="1.4"/>
+    <path d="M80 245 C110 256 190 256 220 245" stroke="#B87620" stroke-width="1.4" stroke-dasharray="3 2"/>
+    <path d="M80 265 C110 276 190 276 220 265" stroke="#B87620" stroke-width="1.4"/>
+    <path d="M80 285 C110 296 190 296 220 285" stroke="#B87620" stroke-width="1.4" stroke-dasharray="3 2"/>
+
+    <!-- Tope del pastel -->
+    <ellipse cx="150" cy="185" rx="70" ry="18" fill="#EFE2C8" fill-opacity="0.5"/>
+
+    <!-- Gota de miel / Abeja estilizada -->
+    <path d="M150 128 C142 140 142 150 150 156 C158 150 158 140 150 128 Z" fill="#D49B38" fill-opacity="0.45" stroke="#8C4E16"/>
+  </g>
+  <!-- Destellos dorados -->
+  <circle cx="95" cy="145" r="2.2" fill="#C88A2E" fill-opacity="0.45"/>
+  <circle cx="205" cy="148" r="2.5" fill="#C88A2E" fill-opacity="0.45"/>
+  <circle cx="150" cy="105" r="1.8" fill="#8C4E16" fill-opacity="0.5"/>
+</svg>

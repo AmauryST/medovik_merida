@@ -1,0 +1,67 @@
+{
+  "store": {
+    "slug": "medovik-merida",
+    "name": "Medovik Mérida",
+    "tagline": "Pastel Ruso de Miel · Repostería Artesanal en Mérida",
+    "country_code": "MX",
+    "currency": "MXN",
+    "whatsapp_number": "529999030512",
+    "whatsapp_display": "+52 999 903 0512",
+    "phone_display": "999 903 0512",
+    "city": "Mérida, Yucatán, México",
+    "instagram": "https://www.instagram.com/medovik_merida/",
+    "instagram_handle": "@medovik_merida",
+    "founded": "Octubre 2026",
+    "sku_prefix": "MDV-MER",
+    "save_orders": false,
+    "show_delivery_zone": false,
+    "payment_methods": ["WHATSAPP_COORDINATION", "TRANSFER", "CASH"]
+  },
+  "owner": {
+    "emails": ["amauryst@gmail.com"]
+  },
+  "theme": {
+    "palette": {
+      "bg_primary": "#FBF7EF",
+      "bg_secondary": "#F4ECDC",
+      "text_primary": "#2C1A10",
+      "text_secondary": "#5E4332",
+      "accent_primary": "#C88A2E",
+      "accent_secondary": "#7A1F24"
+    },
+    "fonts": {
+      "display": "Cormorant Garamond",
+      "sans": "Plus Jakarta Sans"
+    },
+    "placeholder_svg": "/placeholders/default-cake.svg"
+  },
+  "category_groups": [
+    {
+      "code": "FLAVOR",
+      "label": "Sabores de Medovik",
+      "categories": [
+        { "slug": "clasico", "name": "Medovik Clásico", "featured": true },
+        { "slug": "spartak", "name": "Spartak (Miel & Cacao)", "featured": true },
+        { "slug": "caramelo-salado", "name": "Caramelo Salado & Pecana", "featured": true }
+      ]
+    },
+    {
+      "code": "OCCASION",
+      "label": "Presentación y Tamaño",
+      "categories": [
+        { "slug": "pastel-grande", "name": "Pastel Grande (~2.45 kg)", "featured": true },
+        { "slug": "pastel-mediano", "name": "Pastel Mediano (~1.225 kg)", "featured": true },
+        { "slug": "porciones", "name": "Porciones (~180 g)", "featured": true }
+      ]
+    }
+  ],
+  "delivery_zones": [
+    { "name": "Mérida Norte (Entrega o punto acordado)", "fee_cents": 0, "eta": "Coordinado por WhatsApp" },
+    { "name": "Mérida Centro / Paseo de Montejo", "fee_cents": 0, "eta": "Coordinado por WhatsApp" },
+    { "name": "Mérida Poniente / Oriente / Sur", "fee_cents": 0, "eta": "Coordinado por WhatsApp" }
+  ],
+  "catalog_seed_source": {
+    "json_path": "public/data/products.json",
+    "images_dir": "public/assets/galeria"
+  }
+}
