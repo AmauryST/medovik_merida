@@ -72,17 +72,11 @@ export function CartProvider({
   store: StorePublic;
   children: ReactNode;
 }) {
-  const initialGlobalShowPrices = Boolean(
-    store.theme_config &&
-      typeof store.theme_config === "object" &&
-      (store.theme_config as Record<string, unknown>).show_prices === true,
-  );
-
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [lastAddedLabel, setLastAddedLabel] = useState<string | null>(null);
   const [addNonce, setAddNonce] = useState(0);
-  const [showPrices, setShowPricesState] = useState<boolean>(initialGlobalShowPrices);
+  const [showPrices, setShowPricesState] = useState<boolean>(true);
   const [productPriceOverrides, setProductPriceOverrides] = useState<Record<string, boolean>>({});
   const [stripeEnabled, setStripeEnabled] = useState<boolean>(
     store.payment_provider === "STRIPE",
@@ -103,35 +97,25 @@ export function CartProvider({
     };
   }, [store.slug]);
 
-  const setShowPrices = useCallback((visible: boolean) => {
-    setShowPricesState(visible);
-    // Clear individual overrides when flipping the master switch so all 3 products follow suit
+  const setShowPrices = useCallback((_visible: boolean) => {
+    setShowPricesState(true);
     setProductPriceOverrides({});
   }, []);
 
-  const setProductPriceVisible = useCallback((productKey: string, visible: boolean) => {
-    setProductPriceOverrides((prev) => ({
-      ...prev,
-      [productKey]: visible,
-    }));
+  const setProductPriceVisible = useCallback((_productKey: string, _visible: boolean) => {
+    setProductPriceOverrides({});
   }, []);
 
   const isPriceVisibleFor = useCallback(
     (
-      target:
+      _target:
         | CatalogProduct
         | { slug?: string; id?: string; attributes?: Record<string, unknown> }
         | string,
     ): boolean => {
-      if (typeof target === "string") {
-        if (target in productPriceOverrides) {
-          return Boolean(productPriceOverrides[target]);
-        }
-        return showPrices;
-      }
-      return isProductPriceVisible(target, showPrices, productPriceOverrides);
+      return true;
     },
-    [showPrices, productPriceOverrides],
+    [],
   );
 
   const openCart = useCallback(() => setIsCartOpen(true), []);

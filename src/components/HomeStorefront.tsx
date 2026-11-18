@@ -1,21 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import SignatureLinesSection from "@/components/SignatureLinesSection";
-import LegendAndQualitySection from "@/components/LegendAndQualitySection";
-import HowItWorks from "@/components/HowItWorks";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import { CartProvider } from "@/components/catalog/CartContext";
+import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
 import {
-  CatalogSection,
-  type CatalogCollection,
-} from "@/components/catalog/CatalogSection";
+  LegendEditorialSection,
+  WhyMedovikSection,
+} from "@/components/LegendAndQualitySection";
+import Navbar from "@/components/Navbar";
+import { CartProvider } from "@/components/catalog/CartContext";
+import { CatalogSection } from "@/components/catalog/CatalogSection";
 import { FloatingCartBar } from "@/components/catalog/FloatingCartBar";
 import { OrderCartDrawer } from "@/components/catalog/OrderCartDrawer";
-import { ProductDrawer } from "@/components/catalog/ProductDrawer";
 import type {
   BillboardItem,
   CatalogProduct,
@@ -25,94 +21,61 @@ import type {
 } from "@/types/catalog";
 
 interface HomeStorefrontProps {
-  products: CatalogProduct[];
-  categories: Category[];
   store: StorePublic;
-  deliveryZones: DeliveryZone[];
-  billboard?: readonly BillboardItem[];
+  categories?: Category[];
+  featured?: CatalogProduct[];
+  products: CatalogProduct[];
+  zones?: DeliveryZone[];
+  deliveryZones?: DeliveryZone[];
+  billboard?: BillboardItem[];
+  billboardItems?: BillboardItem[];
+  stripeEnabled?: boolean;
 }
 
 export function HomeStorefront({
-  products,
-  categories,
   store,
+  categories = [],
+  products,
+  zones,
   deliveryZones,
-  billboard = [],
+  billboard,
+  billboardItems,
 }: HomeStorefrontProps) {
-  const [selectedProduct, setSelectedProduct] = useState<CatalogProduct | null>(
-    null,
-  );
-  const [externalCollection, setExternalCollection] = useState<{
-    value: CatalogCollection;
-    nonce: number;
-  } | null>(null);
+  const resolvedZones = deliveryZones ?? zones ?? [];
+  const resolvedBillboard = billboard ?? billboardItems ?? [];
 
   return (
     <CartProvider store={store}>
       <div className="min-h-screen flex flex-col bg-crema text-cacao">
         <Navbar />
-
         <main className="flex-1">
-          {/* 1. Hero — Receta Rusa de Miel en Mérida */}
-          <Hero
-            products={products}
-            onSelectProduct={(p) => setSelectedProduct(p)}
-          />
+          {/* 1. Full-Bleed Atmospheric Hero with 3-Item Bottom Overlay Bar */}
+          <Hero />
 
-          {/* 2. Los 3 Sabores Insignia y Precios en MXN (Grande, Mediano y Porción) */}
-          <SignatureLinesSection
-            products={products}
-            onSelectProduct={(p) => setSelectedProduct(p)}
-          />
+          {/* 2. "¿Por qué Medovik?" — 3 Minimalist Icon Columns */}
+          <WhyMedovikSection />
 
-          {/* 3. Catálogo Interactivo con Filtros y Compra por WhatsApp */}
+          {/* 3. "Nuestros Pasteles Artesanales" — Minimalist Product Grid */}
           <CatalogSection
-            id="catalogo"
-            railId="catalogo-rail"
-            variant="home"
-            showBillboard={true}
-            billboard={billboard}
-            kicker="Catálogo en Línea · Precios en MXN"
-            title="Elige tu"
-            titleHighlight="Medovik"
-            subtitle="Disponibles en tamaño Grande (~2,45 kg), Mediano (~1,225 kg) y Porción individual (~180 g). Haz clic en cualquier presentación para ver detalles o pedir por WhatsApp en Mérida."
             store={store}
-            deliveryZones={deliveryZones}
-            products={products}
-            allProducts={products}
             categories={categories}
-            externalCollection={externalCollection}
-            selectedProduct={selectedProduct}
-            onSelectProduct={(p) => setSelectedProduct(p)}
+            products={products}
+            zones={resolvedZones}
+            billboardItems={resolvedBillboard}
+            showBillboard={false}
           />
 
-          {/* 4. La Dulce Leyenda del Medovik + ¿Por qué nuestros pasteles tienen un precio diferente? */}
-          <LegendAndQualitySection />
+          {/* 4. Editorial Story Block with Signature */}
+          <LegendEditorialSection />
 
-          {/* 5. Cómo hacer tu pedido en Mérida */}
+          {/* 5. 2-Column Ordering Steps & Direct Mérida Contact */}
           <HowItWorks />
-
-          {/* 6. Contacto directo por WhatsApp 999 903 0512 e Instagram @medovik_merida */}
-          <ContactSection />
         </main>
-
         <Footer />
-
-        {/* Barra flotante y Drawer del pedido */}
-        <FloatingCartBar />
-        <OrderCartDrawer zones={deliveryZones} />
-
-        {/* Drawer de detalle de producto */}
-        {selectedProduct && (
-          <ProductDrawer
-            key={selectedProduct.id}
-            product={selectedProduct}
-            store={store}
-            zones={deliveryZones}
-            onClose={() => setSelectedProduct(null)}
-          />
-        )}
       </div>
+
+      <FloatingCartBar />
+      <OrderCartDrawer zones={resolvedZones} />
     </CartProvider>
   );
 }

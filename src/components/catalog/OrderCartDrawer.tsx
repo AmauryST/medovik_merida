@@ -165,31 +165,33 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
     new Set(),
   );
 
-  // Sync dialog open/close with isCartOpen
+  // Sync body scroll lock and Escape key with isCartOpen
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
     const root = document.documentElement;
-
-    if (isCartOpen) {
-      if (!dialog.open) dialog.showModal();
-      root.style.overflow = "hidden";
-    } else {
-      if (dialog.open) dialog.close();
-      if (!document.querySelector("dialog[open]")) {
-        root.style.overflow = "";
-        document.body.style.overflow = "";
-      }
+    if (!isCartOpen) {
+      root.style.overflow = "";
+      document.body.style.overflow = "";
+      return;
     }
 
-    return () => {
-      if (dialog.open) dialog.close();
-      if (!document.querySelector("dialog[open]")) {
-        root.style.overflow = "";
-        document.body.style.overflow = "";
+    root.style.overflow = "hidden";
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        if (missingModal) {
+          setMissingModal(null);
+        } else {
+          handleClose();
+        }
       }
     };
-  }, [isCartOpen]);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      root.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [isCartOpen, missingModal]);
 
   useEffect(() => {
     setOtherRecipient(copy.recipientRequired);
@@ -286,13 +288,8 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
     if (submit.kind === "done") {
       setSubmit({ kind: "idle" });
     }
-    if (dialogRef.current?.open) {
-      dialogRef.current.close();
-    }
-    if (!document.querySelector("dialog[open]")) {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
     closeCart();
   };
 
@@ -427,23 +424,24 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
 
   const formLocked = submit.kind === "sending" || submit.kind === "done";
 
+  if (!isCartOpen) {
+    return null;
+  }
+
   return (
-    <dialog
-      ref={dialogRef}
+    <div
+      role="dialog"
+      aria-modal="true"
       aria-labelledby={titleId}
-      onCancel={(event) => {
-        if (missingModal) {
-          event.preventDefault();
-          setMissingModal(null);
-        }
-      }}
-      onClose={handleClose}
       onMouseDown={(event) => {
-        if (event.target === dialogRef.current) handleClose();
+        if (event.target === event.currentTarget) handleClose();
       }}
-      className="animate-order-drawer fixed inset-x-0 top-auto bottom-0 z-50 m-0 h-[92dvh] max-h-none w-full max-w-none overflow-hidden rounded-t-[var(--r-lg)] border-0 bg-white p-0 text-[var(--ink)] shadow-[var(--sh)] backdrop:bg-[rgba(61,35,20,0.45)] sm:inset-y-0 sm:right-0 sm:left-auto sm:h-dvh sm:w-[min(540px,100vw)] sm:rounded-t-none sm:rounded-l-[var(--r-lg)]"
+      className="fixed inset-0 z-50 flex items-end justify-end bg-cacao/55 backdrop-blur-[2px] sm:items-stretch"
     >
-      <div className="flex h-full min-h-0 flex-col overflow-hidden">
+      <div
+        ref={dialogRef as unknown as React.RefObject<HTMLDivElement>}
+        className="flex h-[92dvh] min-h-0 w-full flex-col overflow-hidden rounded-t-[var(--r-lg)] bg-blanco-calido text-[var(--ink)] shadow-[var(--sh)] sm:h-dvh sm:w-[min(540px,100vw)] sm:rounded-t-none sm:rounded-l-[var(--r-lg)]"
+      >
         {/* Header */}
         <div className="flex items-center justify-between gap-4 border-b border-[var(--line)] bg-crema-rosado px-5 py-3.5 sm:px-7">
           <div>
@@ -460,15 +458,6 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            {itemCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setShowPrices(!showPrices)}
-                className="rounded-full border border-dorado bg-white px-3 py-1 text-[11px] font-bold text-cacao transition hover:bg-crema cursor-pointer"
-              >
-                {showPrices ? "💲 Ocultar precios" : "👁️ Mostrar precios"}
-              </button>
-            )}
             <button
               type="button"
               onClick={handleClose}
@@ -559,8 +548,12 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
             </div>
           ) : itemCount === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="mb-3 flex size-14 items-center justify-center rounded-full bg-crema-rosado text-2xl">
-                🍯
+              <div className="mb-3 flex size-14 items-center justify-center rounded-full bg-crema-rosado text-rosa-profundo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                  <path d="M3 6h18" />
+                  <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
               </div>
               <p className="m-0 text-base font-bold text-cacao">
                 Aún no has agregado pasteles a tu pedido
@@ -571,7 +564,7 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
               <button
                 type="button"
                 onClick={handleClose}
-                className="mt-5 cursor-pointer rounded-full bg-rosa px-6 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-rosa-oscuro"
+                className="mt-5 cursor-pointer rounded-full bg-rosa px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-rosa-oscuro"
               >
                 Explorar los 3 sabores
               </button>
@@ -1081,6 +1074,6 @@ export function OrderCartDrawer({ zones }: OrderCartDrawerProps) {
           </div>
         )}
       </div>
-    </dialog>
+    </div>
   );
 }

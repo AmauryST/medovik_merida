@@ -67,7 +67,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     slug: "medovik-clasico",
     sku: "MED-MER-01",
     name: "Medovik Clásico",
-    subtitle: "El sabor de siempre ♡ · Receta imperial rusa de miel natural",
+    subtitle: "El sabor de siempre · Receta imperial rusa de miel natural",
     short_description:
       "8 a 10 finas capas de galleta horneadas con miel natural de abeja y mantequilla auténtica, ensambladas una por una con crema suave ligeramente ácida.",
     description:
@@ -75,12 +75,12 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "clasico",
     flavorName: "Medovik Clásico",
     basePriceCents: 50000,
-    primaryImage: "/images/producto-01.webp",
+    primaryImage: "/images/clasico-mediano.webp",
     galleryImages: [
-      "/images/producto-01.webp",
-      "/images/producto-04.webp",
+      "/images/clasico-mediano.webp",
+      "/images/clasico-higos.webp",
       "/assets/linea-clasico.webp",
-      "/images/producto-09.webp",
+      "/images/clasico-porcion.webp",
     ],
     storyBadge: "Receta Imperial Original",
     intensity: "Dulzura equilibrada · Notas florales de miel tibia y crema fresca",
@@ -108,8 +108,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Sujeta a disponibilidad del día (consultar antes de hacer tu pedido)",
         price_cents: 10000,
         price_delta_cents: -40000,
-        show_price: false,
-        image: "/images/producto-09.webp",
+        show_price: true,
+        image: "/images/clasico-porcion.webp",
       },
       {
         id: "clasico-mediano",
@@ -121,8 +121,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 50000,
         price_delta_cents: 0,
-        show_price: false,
-        image: "/images/producto-01.webp",
+        show_price: true,
+        image: "/images/clasico-mediano.webp",
       },
       {
         id: "clasico-grande",
@@ -134,8 +134,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 100000,
         price_delta_cents: 50000,
-        show_price: false,
-        image: "/images/producto-05.webp",
+        show_price: true,
+        image: "/images/clasico-grande.webp",
       },
     ],
   },
@@ -144,7 +144,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     slug: "medovik-spartak",
     sku: "MED-MER-02",
     name: "Medovik Spartak",
-    subtitle: "Intenso y delicioso ♡ · Miel, cacao real, ciruela pasa y nuez",
+    subtitle: "Intenso y delicioso · Miel, cacao real, ciruela pasa y nuez",
     short_description:
       "Capas profundas de miel y cacao real intercaladas con crema sedosa, trozos de ciruela pasa seleccionada y nuez tostada.",
     description:
@@ -152,11 +152,12 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "spartak",
     flavorName: "Medovik Spartak (Cacao, Ciruela & Nuez)",
     basePriceCents: 60000,
-    primaryImage: "/images/producto-02.webp",
+    primaryImage: "/images/spartak-mediano.webp",
     galleryImages: [
-      "/images/producto-02.webp",
+      "/images/spartak-mediano.webp",
       "/assets/linea-spartak.webp",
-      "/images/producto-10.webp",
+      "/images/spartak-cacao.webp",
+      "/images/spartak-porcion.webp",
     ],
     storyBadge: "Especialidad de Cacao, Ciruela & Nuez",
     intensity: "Cacao profundo · Contraste frutal de ciruela pasa y nuez tostada",
@@ -184,8 +185,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Sujeta a disponibilidad del día (consultar antes de hacer tu pedido)",
         price_cents: 10000,
         price_delta_cents: -50000,
-        show_price: false,
-        image: "/images/producto-10.webp",
+        show_price: true,
+        image: "/images/spartak-porcion.webp",
       },
       {
         id: "spartak-mediano",
@@ -197,8 +198,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 60000,
         price_delta_cents: 0,
-        show_price: false,
-        image: "/images/producto-02.webp",
+        show_price: true,
+        image: "/images/spartak-mediano.webp",
       },
       {
         id: "spartak-grande",
@@ -210,8 +211,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 120000,
         price_delta_cents: 60000,
-        show_price: false,
-        image: "/images/producto-06.webp",
+        show_price: true,
+        image: "/images/spartak-grande.webp",
       },
     ],
   },
@@ -220,7 +221,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     slug: "medovik-caramelo-salado",
     sku: "MED-MER-03",
     name: "Medovik Caramelo Salado & Nuez Pecana",
-    subtitle: "Equilibrio perfecto ♡ · Miel, caramelo salado artesanal y pecana crujiente",
+    subtitle: "Equilibrio perfecto · Miel, caramelo salado artesanal y pecana crujiente",
     short_description:
       "Capas doradas de miel natural con crema sedosa, caramelo salado cocinado en casa a fuego lento y tropiezos crujientes de nuez pecana.",
     description:
@@ -228,11 +229,12 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "caramelo-salado",
     flavorName: "Caramelo Salado & Nuez Pecana",
     basePriceCents: 60000,
-    primaryImage: "/images/producto-03.webp",
+    primaryImage: "/images/caramelo-salado-mediano.webp",
     galleryImages: [
-      "/images/producto-03.webp",
+      "/images/caramelo-salado-mediano.webp",
       "/assets/linea-caramelo.webp",
-      "/images/producto-11.webp",
+      "/images/caramelo-salado-porcion.webp",
+      "/images/degustacion-tres-sabores.webp",
     ],
     storyBadge: "Equilibrio Dulce-Salado & Pecana",
     intensity:
@@ -261,8 +263,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Sujeta a disponibilidad del día (consultar antes de hacer tu pedido)",
         price_cents: 10000,
         price_delta_cents: -50000,
-        show_price: false,
-        image: "/images/producto-11.webp",
+        show_price: true,
+        image: "/images/caramelo-salado-porcion.webp",
       },
       {
         id: "caramelo-mediano",
@@ -274,8 +276,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 60000,
         price_delta_cents: 0,
-        show_price: false,
-        image: "/images/producto-03.webp",
+        show_price: true,
+        image: "/images/caramelo-salado-mediano.webp",
       },
       {
         id: "caramelo-grande",
@@ -287,8 +289,8 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         lead_time: "Haz tu pedido al menos 2 días antes · Se confirma con 50% de anticipo",
         price_cents: 120000,
         price_delta_cents: 60000,
-        show_price: false,
-        image: "/images/producto-07.webp",
+        show_price: true,
+        image: "/images/caramelo-salado-grande.webp",
       },
     ],
   },
@@ -362,7 +364,7 @@ function buildCatalogProductFromMaster(
       ingredients: def.ingredients,
       pairing: def.pairing,
       conservation: def.conservation,
-      show_price: false,
+      show_price: true,
       peso: "~180 g · ~1,225 kg · ~2,45 kg",
       porciones: "Rebanada, Mediano (8-10) o Grande (16-20)",
       formats: def.formats,
@@ -386,7 +388,7 @@ const FALLBACK_STORE: StorePublic = {
   auto_generate_payment_link: false,
   card_surcharge_percent: 0,
   theme_config: {
-    show_prices: false,
+    show_prices: true,
     checkout: {
       order_mode: "HYBRID",
       business_preset: "BAKERY_GIFT",
@@ -440,13 +442,13 @@ export const getStore = cache(async (): Promise<StorePublic> => {
 
     if (!error && data) {
       const storeData = data as StorePublic;
-      // Ensure TropiPay is never used for Mexico and default Demo starts with show_prices=false unless explicitly enabled
+      // Ensure TropiPay is never used for Mexico and default starts with show_prices=true unless explicitly configured
       const themeObj =
         storeData.theme_config && typeof storeData.theme_config === "object"
           ? { ...(storeData.theme_config as Record<string, unknown>) }
           : {};
       if (!("show_prices" in themeObj)) {
-        themeObj.show_prices = false;
+        themeObj.show_prices = true;
       }
       return {
         ...storeData,
@@ -469,7 +471,7 @@ export const getStore = cache(async (): Promise<StorePublic> => {
       return {
         ...(base.data as StorePublic),
         payment_provider: "NONE",
-        theme_config: { show_prices: false },
+        theme_config: { show_prices: true },
       };
     }
   } catch (err) {
@@ -520,11 +522,16 @@ export const getCatalogProducts = cache(async (): Promise<CatalogProduct[]> => {
     if (!matchingRow) {
       return built;
     }
+    const validPrimary =
+      matchingRow.primary_image_url &&
+      !matchingRow.primary_image_url.includes("/images/producto-")
+        ? matchingRow.primary_image_url
+        : built.primary_image_url;
     return {
       ...built,
       id: matchingRow.id,
       store_id: matchingRow.store_id,
-      primary_image_url: matchingRow.primary_image_url || built.primary_image_url,
+      primary_image_url: validPrimary,
       attributes: {
         ...built.attributes,
         ...(matchingRow.attributes ?? {}),
@@ -593,7 +600,7 @@ const FALLBACK_BILLBOARD_ITEMS: BillboardItem[] = [
     id: "00000000-0000-0000-0000-000000000102",
     store_id: DEFAULT_STORE_ID,
     media_id: null,
-    image_url: "/images/producto-02.webp",
+    image_url: "/images/spartak-mediano.webp",
     image_alt: "Medovik Spartak - Miel, Cacao, Ciruela y Nuez",
     kicker: "ESPECIALIDAD DE CACAO REAL",
     title: "Medovik Spartak: miel, cacao, ciruela pasa y nuez tostada",
@@ -613,7 +620,7 @@ const FALLBACK_BILLBOARD_ITEMS: BillboardItem[] = [
     image_url: "/assets/como-pedir.webp",
     image_alt: "Tu Medovik con entrega a domicilio en Mérida",
     kicker: "ENTREGA A DOMICILIO EN MÉRIDA",
-    title: "Tu Medovik será aún más delicioso si lo pides con anticipación ♡",
+    title: "Tu Medovik será aún más delicioso si lo pides con anticipación",
     subtitle:
       "Pasteles completos con mínimo 2 días de anticipación (rebanadas sujetas a disponibilidad). Confirmación con 50% de anticipo.",
     cta_label: "Ver los 5 pasos para pedir",

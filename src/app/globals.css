@@ -62,24 +62,61 @@
   --font-serif: var(--font-cormorant), var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-nunito), system-ui, -apple-system, sans-serif;
   --font-display: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+
+  --shadow-sm: 0 4px 16px rgba(61, 35, 20, 0.06);
+  --shadow-md: 0 12px 32px rgba(61, 35, 20, 0.1);
+  --shadow-lg: 0 24px 60px rgba(61, 35, 20, 0.14);
+  --sh: var(--shadow-md);
+
+  --r-sm: 12px;
+  --r: 18px;
+  --r-lg: 24px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg);
-  color: var(--ink);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--ink);
+  }
+
+  body {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif,
+  .font-editorial {
+    font-family: var(--font-display), var(--font-serif), Georgia, serif;
+  }
+
+  ::selection {
+    background-color: var(--rose-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--rose-deep);
+    outline-offset: 2px;
+  }
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4, .font-editorial {
-  font-family: var(--font-display);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Textura sutil de panal y miel cálida */

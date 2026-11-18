@@ -145,7 +145,7 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
   const showZone = showsDeliveryZone(store, zones);
   const payments = paymentOptions(store);
   const estimateCents = estimateTotalCents(product, presentation, quantity, showZone ? zone : undefined);
-  const showPrice = cart ? cart.isPriceVisibleFor(product) : false;
+  const showPrice = true;
   const isStripeCardCheckout =
     saveOrders &&
     (store.payment_provider === "STRIPE" || cart?.stripeEnabled) &&
@@ -154,9 +154,6 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
 
   const handleAddToCart = () => {
     if (!cart) return;
-    if (dialogRef.current?.open) {
-      dialogRef.current.close();
-    }
     cart.addItem({
       productId: product.id,
       productSlug: product.slug,
@@ -168,32 +165,33 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
       quantity,
       note: itemNote.trim() || undefined,
     });
+    close();
+  };
+
+  const close = () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    onClose();
   };
 
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (!dialog.open) dialog.showModal();
     const root = document.documentElement;
     root.style.overflow = "hidden";
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      if (dialog.open) dialog.close();
+      window.removeEventListener("keydown", handleKeyDown);
       if (!document.querySelector("dialog[open]")) {
         root.style.overflow = "";
         document.body.style.overflow = "";
       }
     };
   }, []);
-
-  const close = () => {
-    if (dialogRef.current?.open) {
-      dialogRef.current.close();
-    }
-    if (!document.querySelector("dialog[open]")) {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
-  };
 
   const set =
     <K extends keyof QuickOrderForm>(key: K) =>
@@ -321,15 +319,19 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
   const formLocked = submit.kind === "sending" || submit.kind === "done";
 
   return (
-    <dialog
-      ref={dialogRef}
+    <div
+      role="dialog"
+      aria-modal="true"
       aria-labelledby={titleId}
-      onClose={onClose}
+      className="fixed inset-0 z-50 flex items-end justify-end bg-cacao/55 backdrop-blur-[2px] sm:items-stretch"
       onMouseDown={(event) => {
-        if (event.target === dialogRef.current) close();
+        if (event.target === event.currentTarget) close();
       }}
-      className="fixed inset-x-0 top-auto bottom-0 m-0 h-[92dvh] max-h-none w-full max-w-none overflow-hidden rounded-t-[var(--r-lg)] border-0 bg-white p-0 text-[var(--ink)] shadow-[var(--sh)] backdrop:bg-[rgba(61,35,20,0.5)] starting:translate-y-6 starting:opacity-0 transition-[translate,opacity] duration-300 ease-out motion-reduce:transition-none sm:inset-y-0 sm:right-0 sm:left-auto sm:h-dvh sm:w-[min(520px,100vw)] sm:rounded-t-none sm:rounded-l-[var(--r-lg)] sm:starting:translate-x-8 sm:starting:translate-y-0 z-50"
     >
+      <div
+        ref={dialogRef as unknown as React.RefObject<HTMLDivElement>}
+        className="flex h-[92dvh] w-full flex-col overflow-hidden rounded-t-[var(--r-lg)] bg-blanco-calido text-[var(--ink)] shadow-[var(--sh)] sm:h-dvh sm:w-[min(520px,100vw)] sm:rounded-t-none sm:rounded-l-[var(--r-lg)]"
+      >
       <form onSubmit={handleSubmit} noValidate className="flex h-full flex-col">
         <div className="flex items-center justify-between gap-4 border-b border-[var(--line)] px-5 py-3.5 sm:px-7 bg-crema-rosado">
           <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--rose)]">
@@ -377,55 +379,40 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
             </div>
           )}
 
-          {/* Name, price visibility toggle, and rich description */}
+          {/* Name and rich description */}
           <div className="mt-5 flex flex-wrap items-start justify-between gap-2">
             <h2 id={titleId} className="m-0 text-[26px] font-bold text-cacao leading-tight">
               {product.name}
             </h2>
-            {cart && (
-              <button
-                type="button"
-                onClick={() => cart.setProductPriceVisible(product.slug, !showPrice)}
-                className="rounded-full border border-dorado bg-crema px-3 py-1 text-xs font-bold text-cacao transition hover:bg-rosa-empolvado/40 cursor-pointer"
-              >
-                {showPrice ? "💲 Ocultar precio" : "👁️ Mostrar precio"}
-              </button>
-            )}
           </div>
           {tagline && <p className="mt-1.5 mb-0 text-[15px] text-cacao-suave leading-relaxed">{tagline}</p>}
 
-          {showPrice ? (
-            <div className="mt-3 flex flex-wrap items-baseline gap-3">
-              <span className="text-[26px] font-extrabold text-[var(--rose)]">
-                ${formatCents(unitCents)} {currency}
-              </span>
-              <span className="rounded-full bg-rosa-empolvado/50 px-2.5 py-0.5 text-xs font-bold text-rosa-profundo">
-                Anticipo 50%: ${formatCents(Math.round(unitCents / 2))} {currency}
-              </span>
-            </div>
-          ) : (
-            <p className="mt-3 mb-0 inline-block rounded-full bg-rosa-empolvado/40 px-3.5 py-1 text-xs font-bold text-rosa-profundo">
-              Modo Catálogo · Selecciona formato y cantidad para conformar tu pedido
-            </p>
-          )}
+          <div className="mt-3 flex flex-wrap items-baseline gap-3">
+            <span className="text-[26px] font-extrabold text-[var(--rose)]">
+              ${formatCents(unitCents)} {currency}
+            </span>
+            <span className="rounded-full bg-rosa-empolvado/50 px-2.5 py-0.5 text-xs font-bold text-rosa-profundo">
+              Anticipo 50%: ${formatCents(Math.round(unitCents / 2))} {currency}
+            </span>
+          </div>
 
           {/* Ficha Técnica y Sensorial del Pastel */}
           <div className="mt-5 space-y-2.5 rounded-2xl border border-dorado-suave/70 bg-crema/60 p-4 text-xs leading-relaxed text-cacao-suave">
             {typeof product.attributes?.layers_info === "string" && (
               <p className="m-0">
-                <strong className="text-cacao">🍯 Capas y estructura:</strong>{" "}
+                <strong className="text-cacao">Capas y estructura:</strong>{" "}
                 {product.attributes.layers_info}
               </p>
             )}
             {typeof product.attributes?.intensity === "string" && (
               <p className="m-0">
-                <strong className="text-cacao">✨ Perfil sensorial:</strong>{" "}
+                <strong className="text-cacao">Perfil sensorial:</strong>{" "}
                 {product.attributes.intensity}
               </p>
             )}
             {Array.isArray(product.attributes?.ingredients) && (
               <div>
-                <strong className="text-cacao">🌿 Ingredientes reales (0% conservadores):</strong>
+                <strong className="text-cacao">Ingredientes reales (0% conservadores):</strong>
                 <ul className="mt-1 mb-0 list-disc space-y-0.5 pl-4">
                   {(product.attributes.ingredients as string[]).map((ing) => (
                     <li key={ing}>{ing}</li>
@@ -435,13 +422,13 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
             )}
             {typeof product.attributes?.pairing === "string" && (
               <p className="m-0">
-                <strong className="text-cacao">☕ Maridaje sugerido:</strong>{" "}
+                <strong className="text-cacao">Maridaje sugerido:</strong>{" "}
                 {product.attributes.pairing}
               </p>
             )}
             {typeof product.attributes?.conservation === "string" && (
               <p className="m-0">
-                <strong className="text-cacao">❄️ Conservación:</strong>{" "}
+                <strong className="text-cacao">Conservación:</strong>{" "}
                 {product.attributes.conservation}
               </p>
             )}
@@ -488,7 +475,7 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
               </div>
               {presentation?.caption && (
                 <p className="mt-2 mb-0 text-xs font-medium text-cacao-suave">
-                  📌 {presentation.caption}
+                  {presentation.caption}
                 </p>
               )}
             </div>
@@ -899,6 +886,7 @@ export function ProductDrawer({ product, store, zones, onClose }: ProductDrawerP
           )}
         </div>
       </form>
-    </dialog>
+      </div>
+    </div>
   );
 }

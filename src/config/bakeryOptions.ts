@@ -50,7 +50,7 @@ export const MEDOVIK_MENU: MedovikLineSpec[] = [
     description:
       "Finas capas de galleta de miel horneadas artesanalmente una por una, intercaladas con una suave crema tradicional de vainilla y crema ácida que funde cada capa tras su reposo en frío.",
     ingredients: ["Miel natural", "Crema suave", "Mantequilla", "Vainilla"],
-    image: "/images/producto-01.webp",
+    image: "/images/clasico-mediano.webp",
     sizes: {
       porcion: {
         label: "Rebanada (~180 g)",
@@ -83,7 +83,7 @@ export const MEDOVIK_MENU: MedovikLineSpec[] = [
     description:
       "Capas de miel y cacao natural puro con crema suave, trozos de ciruela pasa seleccionada y nuez tostada crujiente para un contraste profundo y elegante.",
     ingredients: ["Miel & Cacao", "Ciruela pasa", "Nuez tostada", "Crema suave"],
-    image: "/images/producto-02.webp",
+    image: "/images/spartak-mediano.webp",
     sizes: {
       porcion: {
         label: "Rebanada (~180 g)",
@@ -116,7 +116,7 @@ export const MEDOVIK_MENU: MedovikLineSpec[] = [
     description:
       "Capas de miel rellenas de crema batida con caramelo salado cocinado en cazo de cobre, mantequilla real y nuez pecana tostada.",
     ingredients: ["Caramelo salado", "Nuez pecana", "Miel natural", "Crema batida"],
-    image: "/images/producto-03.webp",
+    image: "/images/caramelo-salado-mediano.webp",
     sizes: {
       porcion: {
         label: "Rebanada (~180 g)",
