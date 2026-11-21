@@ -27,7 +27,7 @@ export const NOTIFIABLE_STATUSES: ReadonlyArray<{
   },
   {
     status: "OUT_FOR_DELIVERY",
-    label: "En camino en La Habana",
+    label: "En camino en Mérida",
     description: "Se envía cuando el pedido sale a reparto hacia la dirección del destinatario.",
   },
   {
@@ -48,15 +48,15 @@ export const EMAIL_TEMPLATE_VARIABLES: ReadonlyArray<{
   sample: string;
 }> = [
   { token: "{{buyer_name}}", description: "Nombre de quien envía", sample: "Ana Pérez" },
-  { token: "{{order_code}}", description: "Código del pedido", sample: "#DEL-1004" },
-  { token: "{{store_name}}", description: "Nombre de la tienda", sample: "Donde Delia" },
-  { token: "{{total_usd}}", description: "Total en USD", sample: "$35.00 USD" },
-  { token: "{{items_summary}}", description: "Resumen de pasteles", sample: "Pastel Red Velvet (Mediano) × 1" },
-  { token: "{{recipient_name}}", description: "Nombre de quien recibe en Cuba", sample: "Mamá Carmen" },
-  { token: "{{delivery_address}}", description: "Dirección de entrega en La Habana", sample: "Calle 23 #456, Vedado" },
+  { token: "{{order_code}}", description: "Código del pedido", sample: "#MED-1004" },
+  { token: "{{store_name}}", description: "Nombre de la tienda", sample: "Medovik Mérida" },
+  { token: "{{total_usd}}", description: "Total", sample: "$650.00 MXN" },
+  { token: "{{items_summary}}", description: "Resumen de pasteles", sample: "Medovik Clásico (Mediano) × 1" },
+  { token: "{{recipient_name}}", description: "Nombre de quien recibe", sample: "Mamá Carmen" },
+  { token: "{{delivery_address}}", description: "Dirección de entrega en Mérida", sample: "Calle 60 #456, Centro, Mérida" },
   { token: "{{delivery_date}}", description: "Fecha de entrega", sample: "2026-11-15" },
   { token: "{{delivery_slot}}", description: "Horario de entrega", sample: "Tarde (1:00 PM - 6:00 PM)" },
-  { token: "{{tracking_url}}", description: "Enlace de seguimiento en vivo", sample: "https://dulce-delia.vercel.app/pedido/DEL-1004" },
+  { token: "{{tracking_url}}", description: "Enlace de seguimiento en vivo", sample: "https://medovik-merida.vercel.app/pedido/MED-1004" },
   { token: "{{payment_url}}", description: "Enlace de pago", sample: "https://tppay.me/ejemplo" },
 ];
 
@@ -65,7 +65,7 @@ export const DEFAULT_EMAIL_TEMPLATES: StoreEmailTemplates = {
     enabled: true,
     subject: "Tu pedido {{order_code}} en {{store_name}} · Enlace de pago y seguimiento",
     heading: "¡Hola {{buyer_name}}! Recibimos tu pedido {{order_code}}",
-    body: "Hemos reservado los datos de entrega para {{recipient_name}} en La Habana ({{delivery_date}}).\n\nSi aún no has completado el pago con tarjeta, puedes hacerlo desde el botón de abajo. En todo momento puedes consultar el estado actualizado de tu pago y entrega en tu página de seguimiento.",
+    body: "Hemos reservado los datos de entrega para {{recipient_name}} en Mérida ({{delivery_date}}).\n\nSi aún no has completado el pago, puedes hacerlo desde el botón de abajo. En todo momento puedes consultar el estado actualizado de tu pago y entrega en tu página de seguimiento.",
     ctaLabel: "Completar pago / Ver estado del pedido",
   },
   PAID: {
@@ -84,16 +84,16 @@ export const DEFAULT_EMAIL_TEMPLATES: StoreEmailTemplates = {
   },
   OUT_FOR_DELIVERY: {
     enabled: true,
-    subject: "🚗 Tu pastel va en camino en La Habana · Pedido {{order_code}}",
+    subject: "🚗 Tu pastel va en camino en Mérida · Pedido {{order_code}}",
     heading: "¡Tu pedido {{order_code}} ya va en camino!",
     body: "Hola {{buyer_name}}, tu pastel ya salió hacia {{delivery_address}} para entregarse a {{recipient_name}}.\n\nTe confirmaremos apenas sea entregado.",
     ctaLabel: "Ver seguimiento en vivo",
   },
   DELIVERED: {
     enabled: true,
-    subject: "🎉 ¡Pedido {{order_code}} entregado en La Habana! · {{store_name}}",
+    subject: "🎉 ¡Pedido {{order_code}} entregado en Mérida! · {{store_name}}",
     heading: "¡Tu pastel fue entregado con éxito!",
-    body: "Hola {{buyer_name}}, te confirmamos que el pedido {{order_code}} ({{items_summary}}) ha sido entregado a {{recipient_name}} en La Habana.\n\n¡Muchas gracias por confiar en {{store_name}} para endulzar sus momentos especiales!",
+    body: "Hola {{buyer_name}}, te confirmamos que el pedido {{order_code}} ({{items_summary}}) ha sido entregado a {{recipient_name}} en Mérida.\n\n¡Muchas gracias por confiar en {{store_name}} para endulzar sus momentos especiales!",
     ctaLabel: "Ver comprobante del pedido",
   },
   CANCELLED: {

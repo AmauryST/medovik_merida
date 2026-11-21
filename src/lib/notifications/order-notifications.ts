@@ -1,5 +1,6 @@
 import "server-only";
 
+import { BRAND } from "@/config/brand";
 import { encryptOrderTrackingToken } from "@/lib/orders/tracking-token";
 import { createServiceRoleClient } from "@/lib/supabase/service";
 import { ORDER_STATUS_LABELS } from "@/types/admin";
@@ -106,7 +107,7 @@ export async function getStoreIntegrationsSummary(
   const resendFromEmail =
     stored.resendFromEmail?.trim() ||
     process.env.RESEND_FROM_EMAIL?.trim() ||
-    "Donde Delia <onboarding@resend.dev>";
+    `${BRAND.storeName} <onboarding@resend.dev>`;
 
   const crmProvider: CrmProviderType =
     stored.crmProvider ||
@@ -221,7 +222,7 @@ function getPublicSiteUrl(originUrl?: string): string {
       return originUrl.replace(/\/$/, "");
     }
   }
-  return "https://dulce-delia.vercel.app";
+  return "https://medovik-merida.vercel.app";
 }
 
 function escapeHtml(value: string): string {
@@ -306,7 +307,7 @@ function buildEmailHtml(params: {
   const safeStatusLabel = escapeHtml(params.statusLabel);
   const safeHeading = escapeHtml(params.heading);
   const safeCtaLabel = escapeHtml(params.ctaLabel);
-  const safeTrackingUrl = sanitizeHttpUrl(params.trackingUrl, "https://dulce-delia.vercel.app/pedido");
+  const safeTrackingUrl = sanitizeHttpUrl(params.trackingUrl, "https://medovik-merida.vercel.app/pedido");
   const safeCtaUrl = sanitizeHttpUrl(params.ctaUrl, params.trackingUrl);
   const safeWhatsappUrl = sanitizeHttpUrl(params.whatsappUrl, params.trackingUrl);
   const safeItemsSummary = escapeHtml(params.itemsSummary);
@@ -347,7 +348,7 @@ function buildEmailHtml(params: {
                     <strong style="color:#2E221D;">Resumen del pedido:</strong><br/>
                     • <strong>Pastel:</strong> ${safeItemsSummary}<br/>
                     • <strong>Total:</strong> ${safeTotalUsd}<br/>
-                    • <strong>Recibe en La Habana:</strong> ${safeRecipientName}<br/>
+                    • <strong>Recibe:</strong> ${safeRecipientName}<br/>
                     • <strong>Dirección:</strong> ${safeDeliveryAddress}<br/>
                     • <strong>Entrega programada:</strong> ${safeDeliveryDate} (${safeDeliverySlot})
                   </td>
@@ -456,7 +457,7 @@ export async function recordOrderLifecycleEvent(params: {
           `${i.name}${i.presentation_label ? ` (${i.presentation_label})` : ""} × ${i.quantity}`,
       )
       .join(", ") || `Pedido #${cleanCode}`;
-  const totalUsd = `$${formatCents(order.total_cents)} USD`;
+  const totalUsd = `$${formatCents(order.total_cents)} ${order.currency || BRAND.currency}`;
   const waDigits = store.whatsapp_number.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${waDigits}?text=${encodeURIComponent(
     `Hola ${store.name}, consulto por mi pedido #${cleanCode}`,
@@ -482,7 +483,7 @@ export async function recordOrderLifecycleEvent(params: {
         total_usd: totalUsd,
         items_summary: itemsSummary,
         recipient_name: order.recipient_name || "Destinatario",
-        delivery_address: order.delivery_address || "La Habana",
+        delivery_address: order.delivery_address || BRAND.shortCity,
         delivery_date: order.delivery_date || "",
         delivery_slot: order.delivery_time_slot || "Cualquier horario",
         tracking_url: trackingUrl,

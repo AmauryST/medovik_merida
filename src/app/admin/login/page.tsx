@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { BRAND } from "@/config/brand";
 import { getAdminAccess } from "@/lib/admin/session";
 
 import { GoogleButton } from "./GoogleButton";
@@ -24,7 +25,7 @@ export default async function LoginPage({
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-6 py-12">
-      <img src="/assets/logo.webp" alt="Donde Delia" className="mx-auto mb-8 h-16 w-auto" />
+      <img src="/assets/logo.webp" alt={BRAND.storeName} className="mx-auto mb-8 h-16 w-auto" />
       <h1 className="text-center text-2xl font-semibold">Panel de la tienda</h1>
       <p className="mt-1 mb-8 text-center text-sm text-stone-500">
         Entra con la cuenta de la tienda.

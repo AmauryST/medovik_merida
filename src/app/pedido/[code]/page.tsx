@@ -77,7 +77,7 @@ const PROGRESS_STEPS: ReadonlyArray<{
   {
     key: "OUT_FOR_DELIVERY",
     title: "En camino",
-    subtitle: "En reparto en La Habana",
+    subtitle: "En reparto en Mérida",
   },
   {
     key: "DELIVERED",
@@ -125,8 +125,8 @@ function maskEmail(raw: string | null): string | null {
 
 function maskAddress(raw: string): string {
   const clean = raw.trim();
-  if (clean.length <= 10) return "Dirección registrada en La Habana";
-  return `${clean.slice(0, 12)}••• (La Habana)`;
+  if (clean.length <= 10) return "Dirección registrada en Mérida, Yucatán";
+  return `${clean.slice(0, 12)}••• (Mérida, Yucatán)`;
 }
 
 export default async function PedidoEstadoPage({
@@ -198,15 +198,16 @@ export default async function PedidoEstadoPage({
     )
     .join("\n");
 
+  const currencyLabel = order.currency || store.currency || "MXN";
   const waLines = [
     `Hola ${store.name}, te escribo por mi pedido *#${order.order_code}*:`,
     "",
     itemsText,
-    `Subtotal: $${formatCents(order.subtotal_cents)} USD`,
+    `Subtotal: $${formatCents(order.subtotal_cents)} ${currencyLabel}`,
     (order.delivery_fee_cents ?? 0) > 0 || feeBreakdown?.shipping_quoted
-      ? `Envío${order.delivery_zone_name ? ` (${order.delivery_zone_name})` : ""}: $${formatCents(order.delivery_fee_cents ?? 0)} USD`
+      ? `Envío${order.delivery_zone_name ? ` (${order.delivery_zone_name})` : ""}: $${formatCents(order.delivery_fee_cents ?? 0)} ${currencyLabel}`
       : "Envío: Por cotizar",
-    `Total: *$${formatCents(order.total_cents)} USD*`,
+    `Total: *$${formatCents(order.total_cents)} ${currencyLabel}*`,
     `Estado: *${isPaid ? "Pagado" : ORDER_STATUS_LABELS[order.status]}*`,
     `Fecha de entrega: ${order.delivery_date} (${order.delivery_time_slot})`,
   ];

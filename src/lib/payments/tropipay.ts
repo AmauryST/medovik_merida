@@ -247,7 +247,7 @@ export async function createTropiPayPaymentCard(
     configuredSiteUrl ||
     (!isLocalOrigin && /^https:\/\/[a-z0-9.-]+$/i.test(input.originUrl)
       ? input.originUrl
-      : "https://dulce-delia.vercel.app")
+      : "https://medovik-merida.vercel.app")
   ).replace(/\/$/, "");
 
   const urlSuccess = `${publicBaseUrl}/pedido/${encodedToken}?pago=exito`;

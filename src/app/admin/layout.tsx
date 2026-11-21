@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { BRAND } from "@/config/brand";
 import "./admin.css";
 
 export const metadata: Metadata = {
-  title: { default: "Admin · Donde Delia", template: "%s · Admin Donde Delia" },
+  title: { default: `Admin · ${BRAND.storeName}`, template: `%s · Admin ${BRAND.storeName}` },
   robots: { index: false, follow: false },
 };
 

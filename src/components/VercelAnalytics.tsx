@@ -11,7 +11,7 @@ function isAllowedAnalyticsPath(pathname: string): boolean {
 
 function isAllowedAnalyticsUrl(rawUrl: string): boolean {
   try {
-    const { pathname } = new URL(rawUrl, "https://dondedelia.com");
+    const { pathname } = new URL(rawUrl, "https://medovik-merida.vercel.app");
     return isAllowedAnalyticsPath(pathname);
   } catch {
     return !rawUrl.includes("/admin") || rawUrl.includes("/admin/login");

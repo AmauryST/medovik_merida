@@ -860,15 +860,15 @@ export function OrdersLive({
   const currentEditingTemplate = templates[selectedTemplateStatus];
   const samplePreviewVars = {
     buyer_name: "Ana Pérez",
-    order_code: "#DEL-1024",
+    order_code: "#MED-1024",
     store_name: storeName,
-    total_usd: "$42.00 USD",
-    items_summary: "Pastel Red Velvet (8 a 10 raciones) x1",
+    total_usd: "$650.00 MXN",
+    items_summary: "Medovik Clásico (Mediano) x1",
     recipient_name: "María Pérez",
-    delivery_address: "Calle 23 #456, Vedado, Plaza de la Revolución",
+    delivery_address: "Calle 60 #456, Centro, Mérida",
     delivery_date: "2026-05-10",
     delivery_slot: "Tarde (2:00 PM - 6:00 PM)",
-    tracking_url: "https://dulce-delia.vercel.app/pedido/DEL-1024",
+    tracking_url: "https://medovik-merida.vercel.app/pedido/MED-1024",
     payment_url: "https://tppay.me/ejemplo",
   };
 
@@ -1495,7 +1495,7 @@ export function OrdersLive({
 
                         <div className="rounded-xl border border-stone-200 bg-white p-3">
                           <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-stone-500">
-                            Entrega en La Habana
+                            Datos de entrega
                           </p>
                           <p className="font-medium text-stone-900">
                             {order.recipient_name || "Sin especificar"} (
@@ -1795,7 +1795,7 @@ export function OrdersLive({
                 Directorio de Clientes (CRM Integrado)
               </h2>
               <p className="text-xs text-stone-500">
-                Clientes agrupados automáticamente por correo o teléfono, con valor histórico de compras (LTV), destinatarios en Cuba y notas de seguimiento.
+                Clientes agrupados automáticamente por correo o teléfono, con valor histórico de compras (LTV), destinatarios y notas de seguimiento.
               </p>
             </div>
             <input
@@ -1815,7 +1815,7 @@ export function OrdersLive({
                   <th className="px-4 py-3">Contacto</th>
                   <th className="px-4 py-3">Pedidos</th>
                   <th className="px-4 py-3">Total (LTV)</th>
-                  <th className="px-4 py-3">Destinatarios en La Habana</th>
+                  <th className="px-4 py-3">Destinatarios</th>
                   <th className="px-4 py-3">Último pedido</th>
                   <th className="px-4 py-3 text-right">Acciones</th>
                 </tr>
@@ -2243,7 +2243,7 @@ export function OrdersLive({
                       type="text"
                       value={resendFromEmail}
                       onChange={(e) => setResendFromEmail(e.target.value)}
-                      placeholder="Dulce Delia <onboarding@resend.dev>"
+                      placeholder={`${storeName} <onboarding@resend.dev>`}
                       className="w-full rounded-xl border border-stone-300 px-3 py-2 text-xs"
                     />
                   </label>
