@@ -186,7 +186,7 @@ function ZoneForm({
       </label>
       <div className="flex gap-3">
         <label className="flex w-32 flex-col gap-1">
-          <span className="text-sm font-medium">Costo (USD)</span>
+          <span className="text-sm font-medium">Costo (MXN)</span>
           <input
             value={fee}
             onChange={(event) => setFee(event.target.value)}

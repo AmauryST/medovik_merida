@@ -480,10 +480,11 @@ export async function updateOrderFeesAndQuoteAction(input: {
     subtotalCents + deliveryFeeCents + extraFeesTotalCents - discountCents,
   );
 
+  const orderCurrency = order.currency ?? store.currency ?? "MXN";
   if (input.regenerateTropiPayLink && totalCents <= 0) {
     return {
       ok: false,
-      error: "El total final debe ser mayor a $0.00 USD para generar un enlace de pago.",
+      error: `El total final debe ser mayor a $0.00 ${orderCurrency} para generar un enlace de pago.`,
     };
   }
 
@@ -521,7 +522,7 @@ export async function updateOrderFeesAndQuoteAction(input: {
   }
 
   const hdrs = await headers();
-  const host = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3102";
+  const host = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3103";
   const proto = hdrs.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const originUrl = `${proto}://${host}`;
 
@@ -550,7 +551,7 @@ export async function updateOrderFeesAndQuoteAction(input: {
           storeName: store.name,
           description: itemsSummary || `Pedido #${order.order_code}`,
           amountCents: totalCents,
-          currency: order.currency ?? "USD",
+          currency: orderCurrency,
           serviceDate: order.delivery_date || havanaToday(),
           originUrl,
           buyer: {
@@ -582,17 +583,17 @@ export async function updateOrderFeesAndQuoteAction(input: {
       } catch (err) {
         warning =
           err instanceof Error
-            ? `Total actualizado a $${formatCents(totalCents)} USD, pero TropiPay devolvió: ${err.message}`
+            ? `Total actualizado a $${formatCents(totalCents)} ${orderCurrency}, pero TropiPay devolvió: ${err.message}`
             : "Total actualizado, pero no se pudo regenerar el enlace de TropiPay.";
       }
     }
   }
 
   const detailParts = [
-    `Envío: $${formatCents(deliveryFeeCents)} USD`,
-    extraFeesTotalCents > 0 ? `Cargos: $${formatCents(extraFeesTotalCents)} USD` : null,
-    discountCents > 0 ? `Descuento: -$${formatCents(discountCents)} USD` : null,
-    `Total final: $${formatCents(totalCents)} USD`,
+    `Envío: $${formatCents(deliveryFeeCents)} ${orderCurrency}`,
+    extraFeesTotalCents > 0 ? `Cargos: $${formatCents(extraFeesTotalCents)} ${orderCurrency}` : null,
+    discountCents > 0 ? `Descuento: -$${formatCents(discountCents)} ${orderCurrency}` : null,
+    `Total final: $${formatCents(totalCents)} ${orderCurrency}`,
   ].filter(Boolean);
 
   const lifecycle = await recordOrderLifecycleEvent({
@@ -645,13 +646,13 @@ export async function updateStorePaymentSettingsAction(input: {
     return { ok: false, error: "Selecciona al menos un método de pago activo." };
   }
 
-  const prefix = input.orderPrefix.trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6) || "DEL";
+  const prefix = input.orderPrefix.trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6) || "MED";
   const currency =
-    (input.currency ?? store.currency ?? "USD")
+    (input.currency ?? store.currency ?? "MXN")
       .trim()
       .toUpperCase()
       .replace(/[^A-Z]/g, "")
-      .slice(0, 5) || "USD";
+      .slice(0, 5) || "MXN";
 
   const updatePayload: Record<string, unknown> = {
     save_orders: Boolean(input.saveOrders),

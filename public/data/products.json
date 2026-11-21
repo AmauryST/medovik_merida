@@ -20,9 +20,9 @@
       "image": "/images/clasico-mediano.webp",
       "gallery": [
         "/images/clasico-mediano.webp",
-        "/images/clasico-higos.webp",
-        "/assets/linea-clasico.webp",
-        "/images/clasico-porcion.webp"
+        "/images/clasico-grande.webp",
+        "/images/clasico-porcion.webp",
+        "/images/clasico-higos.webp"
       ],
       "ingredients": [
         "Miel natural de abeja (100% pura, sin jarabes)",
@@ -79,9 +79,9 @@
       "image": "/images/spartak-mediano.webp",
       "gallery": [
         "/images/spartak-mediano.webp",
-        "/assets/linea-spartak.webp",
-        "/images/spartak-cacao.webp",
-        "/images/spartak-porcion.webp"
+        "/images/spartak-grande.webp",
+        "/images/spartak-porcion.webp",
+        "/images/spartak-cacao.webp"
       ],
       "ingredients": [
         "Miel natural de abeja y cacao real de alta pureza",
@@ -138,7 +138,7 @@
       "image": "/images/caramelo-salado-mediano.webp",
       "gallery": [
         "/images/caramelo-salado-mediano.webp",
-        "/assets/linea-caramelo.webp",
+        "/images/caramelo-salado-grande.webp",
         "/images/caramelo-salado-porcion.webp",
         "/images/degustacion-tres-sabores.webp"
       ],

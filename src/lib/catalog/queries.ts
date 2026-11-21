@@ -75,17 +75,17 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "clasico",
     flavorName: "Medovik Clásico",
     basePriceCents: 50000,
-    primaryImage: "/images/clasico-mediano.webp",
+    primaryImage: "/images/clasico-mediano.webp?v=20261121",
     galleryImages: [
-      "/images/clasico-mediano.webp",
-      "/images/clasico-higos.webp",
-      "/assets/linea-clasico.webp",
-      "/images/clasico-porcion.webp",
+      "/images/clasico-mediano.webp?v=20261121",
+      "/images/clasico-grande.webp?v=20261121",
+      "/images/clasico-porcion.webp?v=20261121",
+      "/images/clasico-higos.webp?v=20261121",
     ],
     storyBadge: "Receta Imperial Original",
     intensity: "Dulzura equilibrada · Notas florales de miel tibia y crema fresca",
     layersInfo:
-      "8 a 10 capas finas horneadas individualmente y cubiertas con miga dorada de miel",
+      "8 a 10 capas de galleta de miel horneadas individualmente y reposadas 24 h en crema suave",
     ingredients: [
       "Miel natural de abeja (100% pura, sin jarabes)",
       "Mantequilla auténtica de vaca",
@@ -94,9 +94,9 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
       "Sin saborizantes, conservadores ni potenciadores artificiales",
     ],
     pairing:
-      "Ideal con café americano de especialidad, té negro ruso (Earl Grey / Assam) o infusión de manzanilla.",
+      "Ideal con té negro ruso, café americano de tueste medio, infusión de manzanilla o una copa de espumoso brut.",
     conservation:
-      "Mantener en refrigeración (2 °C a 6 °C). Consumir preferentemente dentro de los 5 días posteriores a su entrega.",
+      "Conservar en refrigeración (2 °C a 6 °C) hasta por 5 días. Retirar del refrigerador 10 minutos antes de servir para disfrutar su textura más cremosa.",
     formats: [
       {
         id: "clasico-rebanada",
@@ -109,7 +109,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 10000,
         price_delta_cents: -40000,
         show_price: true,
-        image: "/images/clasico-porcion.webp",
+        image: "/images/clasico-porcion.webp?v=20261121",
       },
       {
         id: "clasico-mediano",
@@ -122,7 +122,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 50000,
         price_delta_cents: 0,
         show_price: true,
-        image: "/images/clasico-mediano.webp",
+        image: "/images/clasico-mediano.webp?v=20261121",
       },
       {
         id: "clasico-grande",
@@ -135,7 +135,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 100000,
         price_delta_cents: 50000,
         show_price: true,
-        image: "/images/clasico-grande.webp",
+        image: "/images/clasico-grande.webp?v=20261121",
       },
     ],
   },
@@ -152,12 +152,12 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "spartak",
     flavorName: "Medovik Spartak (Cacao, Ciruela & Nuez)",
     basePriceCents: 60000,
-    primaryImage: "/images/spartak-mediano.webp",
+    primaryImage: "/images/spartak-mediano.webp?v=20261121",
     galleryImages: [
-      "/images/spartak-mediano.webp",
-      "/assets/linea-spartak.webp",
-      "/images/spartak-cacao.webp",
-      "/images/spartak-porcion.webp",
+      "/images/spartak-mediano.webp?v=20261121",
+      "/images/spartak-grande.webp?v=20261121",
+      "/images/spartak-porcion.webp?v=20261121",
+      "/images/spartak-cacao.webp?v=20261121",
     ],
     storyBadge: "Especialidad de Cacao, Ciruela & Nuez",
     intensity: "Cacao profundo · Contraste frutal de ciruela pasa y nuez tostada",
@@ -186,7 +186,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 10000,
         price_delta_cents: -50000,
         show_price: true,
-        image: "/images/spartak-porcion.webp",
+        image: "/images/spartak-porcion.webp?v=20261121",
       },
       {
         id: "spartak-mediano",
@@ -199,7 +199,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 60000,
         price_delta_cents: 0,
         show_price: true,
-        image: "/images/spartak-mediano.webp",
+        image: "/images/spartak-mediano.webp?v=20261121",
       },
       {
         id: "spartak-grande",
@@ -212,7 +212,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 120000,
         price_delta_cents: 60000,
         show_price: true,
-        image: "/images/spartak-grande.webp",
+        image: "/images/spartak-grande.webp?v=20261121",
       },
     ],
   },
@@ -229,29 +229,28 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
     flavorSlug: "caramelo-salado",
     flavorName: "Caramelo Salado & Nuez Pecana",
     basePriceCents: 60000,
-    primaryImage: "/images/caramelo-salado-mediano.webp",
+    primaryImage: "/images/caramelo-salado-mediano.webp?v=20261121",
     galleryImages: [
-      "/images/caramelo-salado-mediano.webp",
-      "/assets/linea-caramelo.webp",
-      "/images/caramelo-salado-porcion.webp",
-      "/images/degustacion-tres-sabores.webp",
+      "/images/caramelo-salado-mediano.webp?v=20261121",
+      "/images/caramelo-salado-grande.webp?v=20261121",
+      "/images/caramelo-salado-porcion.webp?v=20261121",
+      "/images/degustacion-tres-sabores.webp?v=20261121",
     ],
-    storyBadge: "Equilibrio Dulce-Salado & Pecana",
-    intensity:
-      "Contraste seductor · Caramelo a la mantequilla, toque de sal de mar y pecana crujiente",
+    storyBadge: "Caramelo Salado Artesanal & Pecana",
+    intensity: " Contraste dulce-salado · Miel dorada, caramelo de mantequilla y pecana",
     layersInfo:
-      "8 a 10 capas de miel natural con reducción artesanal de caramelo salado y nuez pecana",
+      "8 a 10 capas de miel natural con crema suave, caramelo salado hecho en casa y nuez pecana",
     ingredients: [
-      "Miel natural de abeja y caramelo salado hecho en casa",
-      "Nuez pecana seleccionada y tostada al momento",
-      "Mantequilla de verdad, quesos y cremas de alta calidad",
-      "Toque sutil de sal de mar sin refinar",
-      "Sin conservadores, saborizantes ni jarabes industriales",
+      "Miel natural de abeja y mantequilla de verdad",
+      "Caramelo salado cocinado artesanalmente en casa",
+      "Nueces pecanas seleccionadas y tostadas",
+      "Quesos y cremas naturales de alta calidad",
+      "Sin jarabes industriales, saborizantes ni conservadores",
     ],
     pairing:
-      "Perfecto con cold brew, latte sin azúcar, té chai o como postre estelar en cenas especiales.",
+      "Acompaña de maravilla con café latte, cold brew, té chai, bourbon suave o helado artesanal de vainilla.",
     conservation:
-      "Mantener en refrigeración (2 °C a 6 °C). Consumir dentro de los 5 días posteriores a su entrega.",
+      "Mantener en refrigeración (2 °C a 6 °C). Retirar 10 minutos antes de servir para que el caramelo salado exprese toda su untuosidad.",
     formats: [
       {
         id: "caramelo-rebanada",
@@ -264,7 +263,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 10000,
         price_delta_cents: -50000,
         show_price: true,
-        image: "/images/caramelo-salado-porcion.webp",
+        image: "/images/caramelo-salado-porcion.webp?v=20261121",
       },
       {
         id: "caramelo-mediano",
@@ -277,7 +276,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 60000,
         price_delta_cents: 0,
         show_price: true,
-        image: "/images/caramelo-salado-mediano.webp",
+        image: "/images/caramelo-salado-mediano.webp?v=20261121",
       },
       {
         id: "caramelo-grande",
@@ -290,7 +289,7 @@ export const MASTER_MEDOVIK_PRODUCTS: MasterProductDefinition[] = [
         price_cents: 120000,
         price_delta_cents: 60000,
         show_price: true,
-        image: "/images/caramelo-salado-grande.webp",
+        image: "/images/caramelo-salado-grande.webp?v=20261121",
       },
     ],
   },
@@ -522,16 +521,11 @@ export const getCatalogProducts = cache(async (): Promise<CatalogProduct[]> => {
     if (!matchingRow) {
       return built;
     }
-    const validPrimary =
-      matchingRow.primary_image_url &&
-      !matchingRow.primary_image_url.includes("/images/producto-")
-        ? matchingRow.primary_image_url
-        : built.primary_image_url;
     return {
       ...built,
       id: matchingRow.id,
       store_id: matchingRow.store_id,
-      primary_image_url: validPrimary,
+      primary_image_url: built.primary_image_url,
       attributes: {
         ...built.attributes,
         ...(matchingRow.attributes ?? {}),

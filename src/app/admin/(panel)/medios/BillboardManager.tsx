@@ -632,7 +632,7 @@ export function BillboardManager({
                 <AdminThumb url={product.cover_url} alt="" />
                 <div>
                   <p className="font-medium text-stone-900">{product.name}</p>
-                  <p className="text-xs text-stone-500">${formatCents(product.price_cents)} USD</p>
+                  <p className="text-xs text-stone-500">${formatCents(product.price_cents)} MXN</p>
                 </div>
               </div>
               <FeaturedSwitch

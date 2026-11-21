@@ -37,6 +37,14 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   images: {
+    localPatterns: [
+      {
+        pathname: "/images/**",
+      },
+      {
+        pathname: "/assets/**",
+      },
+    ],
     remotePatterns: [
       {
         protocol: "https",

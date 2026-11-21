@@ -69,8 +69,8 @@ const ALL_STATUSES: ReadonlyArray<OrderStatus> = [
   "CANCELLED",
 ];
 
-const dateFormat = new Intl.DateTimeFormat("es", {
-  timeZone: "America/Havana",
+const dateFormat = new Intl.DateTimeFormat("es-MX", {
+  timeZone: "America/Merida",
   day: "numeric",
   month: "short",
   hour: "numeric",
@@ -293,7 +293,7 @@ export function OrdersLive({
     paymentSettings.paymentMethods,
   );
   const [orderPrefix, setOrderPrefix] = useState(paymentSettings.orderPrefix);
-  const [storeCurrency, setStoreCurrency] = useState(paymentSettings.currency ?? "USD");
+  const [storeCurrency, setStoreCurrency] = useState(paymentSettings.currency ?? "MXN");
   const [checkoutConfig, setCheckoutConfig] = useState<StoreCheckoutConfig>(
     initialCheckoutConfig,
   );
@@ -722,7 +722,7 @@ export function OrdersLive({
         }),
       );
 
-      const parts = [`Cotización guardada ($${formatCents(res.totalCents)} USD).`];
+      const parts = [`Cotización guardada ($${formatCents(res.totalCents)} ${storeCurrency}).`];
       if (opts.regenerateTropiPayLink && res.paymentLinkUrl) {
         parts.push("Enlace de pago TropiPay actualizado.");
       }
@@ -951,7 +951,7 @@ export function OrdersLive({
                 Pagados / Confirmados
               </p>
               <p className="mt-1 text-lg font-extrabold text-emerald-950">
-                ${formatCents(kpis.paidCents)} USD
+                ${formatCents(kpis.paidCents)} {storeCurrency}
               </p>
               <p className="text-xs text-emerald-700">{kpis.paidCount} pedidos pagados</p>
             </div>
@@ -961,7 +961,7 @@ export function OrdersLive({
                 Por cobrar (Pendientes)
               </p>
               <p className="mt-1 text-lg font-extrabold text-amber-950">
-                ${formatCents(kpis.unpaidCents)} USD
+                ${formatCents(kpis.unpaidCents)} {storeCurrency}
               </p>
               <p className="text-xs text-amber-800">{kpis.unpaidCount} esperando pago</p>
             </div>
@@ -1267,7 +1267,7 @@ export function OrdersLive({
                             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-4">
                               <label className="block">
                                 <span className="mb-1 block text-[11px] font-medium text-stone-600">
-                                  Envío (USD)
+                                  Envío ({storeCurrency})
                                 </span>
                                 <input
                                   type="text"
@@ -1296,13 +1296,13 @@ export function OrdersLive({
                                       zoneName: e.target.value,
                                     }))
                                   }
-                                  placeholder="Ej. Vedado / Mensajero"
+                                  placeholder="Ej. Norte Mérida / Mensajería"
                                   className="w-full rounded-lg border border-stone-300 bg-white px-2.5 py-1.5 text-xs"
                                 />
                               </label>
                               <label className="block">
                                 <span className="mb-1 block text-[11px] font-medium text-stone-600">
-                                  Descuento (USD)
+                                  Descuento ({storeCurrency})
                                 </span>
                                 <input
                                   type="text"
@@ -1866,7 +1866,7 @@ export function OrdersLive({
                           </span>
                         </td>
                         <td className="px-4 py-3 font-bold tabular-nums text-stone-900">
-                          ${formatCents(contact.totalSpentCents)} USD
+                          ${formatCents(contact.totalSpentCents)} {storeCurrency}
                         </td>
                         <td className="px-4 py-3 text-stone-600">
                           {contact.recipients.slice(0, 3).join(", ") || "—"}
@@ -2131,18 +2131,18 @@ export function OrdersLive({
                   )}
                 </div>
                 <div className="overflow-hidden rounded-2xl border border-[#EADCD3] bg-white shadow-xs">
-                  <div className="border-b border-[#EFE6DF] bg-[#FDF6F8] px-5 py-4">
-                    <p className="m-0 text-[10px] font-bold tracking-[0.2em] uppercase text-[#B56576]">
+                  <div className="border-b border-[#EFE6DF] bg-[#FBF7EF] px-5 py-4">
+                    <p className="m-0 text-[10px] font-bold tracking-[0.2em] uppercase text-[#7D2027]">
                       {storeName}
                     </p>
-                    <h3 className="m-0 mt-1 font-serif text-lg font-bold text-[#2E221D]">
+                    <h3 className="m-0 mt-1 font-serif text-lg font-bold text-[#26160C]">
                       {interpolateEmailTemplate(
                         currentEditingTemplate.heading,
                         samplePreviewVars,
                       )}
                     </h3>
                   </div>
-                  <div className="space-y-2.5 px-5 py-4 text-xs leading-relaxed text-[#4A3A33]">
+                  <div className="space-y-2.5 px-5 py-4 text-xs leading-relaxed text-[#4A3121]">
                     {interpolateEmailTemplate(
                       currentEditingTemplate.body,
                       samplePreviewVars,
@@ -2154,7 +2154,7 @@ export function OrdersLive({
                         </p>
                       ))}
                     <div className="pt-3">
-                      <span className="inline-block rounded-full bg-[#B56576] px-5 py-2.5 text-xs font-extrabold text-white">
+                      <span className="inline-block rounded-full bg-[#7D2027] px-5 py-2.5 text-xs font-extrabold text-white">
                         {interpolateEmailTemplate(
                           currentEditingTemplate.ctaLabel,
                           samplePreviewVars,
@@ -2404,7 +2404,7 @@ export function OrdersLive({
                 {checkoutConfig.shipping_fee_mode === "FIXED_AT_CHECKOUT" && (
                   <label className="block max-w-xs">
                     <span className="mb-1 block text-xs font-medium text-stone-600">
-                      Tarifa fija de envío (USD)
+                      Tarifa fija de envío ({storeCurrency})
                     </span>
                     <input
                       type="text"

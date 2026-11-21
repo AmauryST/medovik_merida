@@ -6,14 +6,14 @@
 @layer base {
   body:has(.admin) {
     margin: 0;
-    background: #fafaf9;
+    background: #FBF7EF;
   }
 
   .admin {
-    --brand: #d52027;
-    --brand-hover: #a3151b;
-    --ink: #212224;
-    --line: #e7e5e4;
+    --brand: #7D2027;
+    --brand-hover: #5E151B;
+    --ink: #26160C;
+    --line: #E6C48A;
     min-height: 100dvh;
     color: var(--ink);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

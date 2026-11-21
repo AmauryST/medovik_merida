@@ -79,7 +79,7 @@ export function ProductDetailsForm({
         />
       </label>
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">Precio (USD)</span>
+        <span className="text-sm font-medium">Precio (MXN)</span>
         <div className="relative">
           <span aria-hidden className="absolute top-1/2 left-4 -translate-y-1/2 text-stone-500">
             $

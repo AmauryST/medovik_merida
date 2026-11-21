@@ -1,12 +1,14 @@
 import path from "node:path";
-import { mkdir } from "node:fs/promises";
+import { mkdir, copyFile } from "node:fs/promises";
 import sharp from "sharp";
 
 const ROOT = process.cwd();
 const SRC_DIR = path.join(ROOT, "source-images");
+const CLEAN_SRC_DIR = path.join(SRC_DIR, "clean-products");
 const ASSETS_DIR = path.join(ROOT, "public", "assets");
 const GALERIA_DIR = path.join(ASSETS_DIR, "galeria");
 const IMAGES_DIR = path.join(ROOT, "public", "images");
+const CLEAN_PNG_DIR = path.join(IMAGES_DIR, "clean");
 
 const FILES = {
   logo: path.join(
@@ -37,16 +39,27 @@ const FILES = {
     SRC_DIR,
     "c4fa3cc1-52ac-441b-9d26-cb41273dac61-8ca762cc-daaa-4390-a011-cea9e24e32c6.png",
   ),
-  menu2: path.join(
-    SRC_DIR,
-    "c4fa3cc1-52ac-441b-9d26-cb41273dac61-07c3c847-2f44-4646-880c-40fa4f856124.png",
-  ),
+  menu3x3: path.join(SRC_DIR, "menu-3x3-clean-source.png"),
+};
+
+// High-resolution text-free studio product photos derived from menu-3x3-clean-source.png
+const CLEAN_PRODUCT_SOURCES: Record<string, string> = {
+  "caramelo-salado-grande": path.join(CLEAN_SRC_DIR, "caramelo-salado-grande.jpg"),
+  "caramelo-salado-mediano": path.join(CLEAN_SRC_DIR, "caramelo-salado-mediano.jpg"),
+  "caramelo-salado-porcion": path.join(CLEAN_SRC_DIR, "caramelo-salado-porcion.jpg"),
+  "spartak-grande": path.join(CLEAN_SRC_DIR, "spartak-grande.jpg"),
+  "spartak-mediano": path.join(CLEAN_SRC_DIR, "spartak-mediano.jpg"),
+  "spartak-porcion": path.join(CLEAN_SRC_DIR, "spartak-porcion.jpg"),
+  "clasico-grande": path.join(CLEAN_SRC_DIR, "clasico-grande.jpg"),
+  "clasico-mediano": path.join(CLEAN_SRC_DIR, "clasico-mediano.jpg"),
+  "clasico-porcion": path.join(CLEAN_SRC_DIR, "clasico-porcion.jpg"),
 };
 
 async function main() {
   await mkdir(ASSETS_DIR, { recursive: true });
   await mkdir(GALERIA_DIR, { recursive: true });
   await mkdir(IMAGES_DIR, { recursive: true });
+  await mkdir(CLEAN_PNG_DIR, { recursive: true });
 
   // 1. Official Logo (856x850)
   await sharp(FILES.logo)
@@ -61,8 +74,8 @@ async function main() {
     .webp({ quality: 90 })
     .toFile(path.join(ASSETS_DIR, "logo-emblem.webp"));
 
-  // 2. Hero & Full Product Photos
-  // Medovik Clásico con Higos Frescos (813x827)
+  // 2. Hero & Full Product Photos (Text-Free)
+  // Medovik Clásico con Higos Frescos (813x827 - already text-free)
   await sharp(FILES.clasicoHigos)
     .resize(1000, 1000, { fit: "cover", position: "centre" })
     .webp({ quality: 88 })
@@ -70,140 +83,123 @@ async function main() {
 
   await sharp(FILES.clasicoHigos)
     .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 86 })
+    .webp({ quality: 88 })
     .toFile(path.join(GALERIA_DIR, "clasico-higos.webp"));
 
-  // Focused crop on the golden honey cake for Clásico Grande
-  await sharp(FILES.clasicoHigos)
-    .extract({ left: 25, top: 40, width: 680, height: 680 })
-    .resize(1000, 1000, { fit: "cover" })
-    .webp({ quality: 86 })
-    .toFile(path.join(GALERIA_DIR, "clasico-grande.webp"));
-
-  // Medovik Spartak (821x850)
+  // Medovik Spartak Hero (821x850 - already text-free)
   await sharp(FILES.spartak)
     .resize(1000, 1000, { fit: "cover", position: "centre" })
     .webp({ quality: 88 })
     .toFile(path.join(ASSETS_DIR, "hero-spartak.webp"));
 
-  await sharp(FILES.spartak)
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 86 })
-    .toFile(path.join(GALERIA_DIR, "spartak-grande.webp"));
-
-  // Closer crop on Spartak cocoa layers, walnuts & prunes for Spartak Mediano
+  // Spartak Cacao close-up (text-free crop from Spartak hero)
   await sharp(FILES.spartak)
     .extract({ left: 75, top: 90, width: 670, height: 670 })
     .resize(1000, 1000, { fit: "cover" })
-    .webp({ quality: 86 })
-    .toFile(path.join(GALERIA_DIR, "spartak-mediano.webp"));
-
-  // 3. Three Signature Flavors Triptych (863x450)
-  await sharp(FILES.triptych)
-    .webp({ quality: 90 })
-    .toFile(path.join(ASSETS_DIR, "triptico-sabores.webp"));
-
-  // Panel 1 (Left): Clásico with honey jar, dipper & honeycomb (x: 0..286, y: 0..450)
-  await sharp(FILES.triptych)
-    .extract({ left: 0, top: 0, width: 286, height: 450 })
-    .resize(800, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(ASSETS_DIR, "linea-clasico.webp"));
-
-  await sharp(FILES.triptych)
-    .extract({ left: 0, top: 105, width: 286, height: 345 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "clasico-mediano.webp"));
-
-  // Panel 2 (Center): Spartak with dark chocolate, walnuts & prunes (x: 288..574, y: 0..450)
-  await sharp(FILES.triptych)
-    .extract({ left: 288, top: 0, width: 286, height: 450 })
-    .resize(800, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(ASSETS_DIR, "linea-spartak.webp"));
-
-  await sharp(FILES.triptych)
-    .extract({ left: 288, top: 105, width: 286, height: 345 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
     .webp({ quality: 88 })
     .toFile(path.join(GALERIA_DIR, "spartak-cacao.webp"));
 
-  // Panel 3 (Right): Caramelo Salado & Nuez Pecana (x: 576..863, y: 0..450)
-  await sharp(FILES.triptych)
-    .extract({ left: 576, top: 0, width: 287, height: 450 })
+  // 3. Process the 9 core 3x3 Product Images (3 flavors x 3 formats) — 100% Text-Free
+  for (const [slug, srcPath] of Object.entries(CLEAN_PRODUCT_SOURCES)) {
+    // Save 1000x1000 WebP in public/assets/galeria/
+    await sharp(srcPath)
+      .resize(1000, 1000, { fit: "cover", position: "centre" })
+      .webp({ quality: 90 })
+      .toFile(path.join(GALERIA_DIR, `${slug}.webp`));
+
+    // Save 1000x1000 clean PNG in public/images/clean/
+    await sharp(srcPath)
+      .resize(1000, 1000, { fit: "cover", position: "centre" })
+      .png({ compressionLevel: 8 })
+      .toFile(path.join(CLEAN_PNG_DIR, `${slug}.png`));
+  }
+
+  // 4. Text-Free Signature Line Cards (linea-clasico, linea-spartak, linea-caramelo)
+  await sharp(CLEAN_PRODUCT_SOURCES["clasico-grande"])
     .resize(800, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
+    .webp({ quality: 90 })
+    .toFile(path.join(ASSETS_DIR, "linea-clasico.webp"));
+
+  await sharp(CLEAN_PRODUCT_SOURCES["spartak-grande"])
+    .resize(800, 1000, { fit: "cover", position: "centre" })
+    .webp({ quality: 90 })
+    .toFile(path.join(ASSETS_DIR, "linea-spartak.webp"));
+
+  await sharp(CLEAN_PRODUCT_SOURCES["caramelo-salado-grande"])
+    .resize(800, 1000, { fit: "cover", position: "centre" })
+    .webp({ quality: 90 })
     .toFile(path.join(ASSETS_DIR, "linea-caramelo.webp"));
 
-  await sharp(FILES.triptych)
-    .extract({ left: 576, top: 100, width: 287, height: 350 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "caramelo-salado-grande.webp"));
+  // 5. Clean Text-Free 3-Flavor Triptych & Degustación 3 Sabores
+  // Compose a clean 3-panel showcase from the 3 clean Grande hero cakes (zero text)
+  const panelW = 390;
+  const panelH = 650;
+  const gap = 15;
+  const pad = 30;
+  const canvasW = pad * 2 + panelW * 3 + gap * 2; // 1260
+  const canvasH = pad * 2 + panelH; // 710
 
-  await sharp(FILES.triptych)
-    .extract({ left: 582, top: 120, width: 275, height: 310 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "caramelo-salado-mediano.webp"));
+  const [pClasico, pSpartak, pCaramelo] = await Promise.all([
+    sharp(CLEAN_PRODUCT_SOURCES["clasico-grande"])
+      .resize(panelW, panelH, { fit: "cover", position: "centre" })
+      .toBuffer(),
+    sharp(CLEAN_PRODUCT_SOURCES["spartak-grande"])
+      .resize(panelW, panelH, { fit: "cover", position: "centre" })
+      .toBuffer(),
+    sharp(CLEAN_PRODUCT_SOURCES["caramelo-salado-grande"])
+      .resize(panelW, panelH, { fit: "cover", position: "centre" })
+      .toBuffer(),
+  ]);
 
-  // Degustación 3 Sabores (wide showcase centered crop)
-  await sharp(FILES.triptych)
-    .extract({ left: 0, top: 95, width: 863, height: 355 })
+  const cleanTriptychBuffer = await sharp({
+    create: {
+      width: canvasW,
+      height: canvasH,
+      channels: 4,
+      background: { r: 251, g: 247, b: 239, alpha: 1 }, // #FBF7EF
+    },
+  })
+    .composite([
+      { input: pCaramelo, left: pad, top: pad },
+      { input: pSpartak, left: pad + panelW + gap, top: pad },
+      { input: pClasico, left: pad + (panelW + gap) * 2, top: pad },
+    ])
+    .png()
+    .toBuffer();
+
+  await sharp(cleanTriptychBuffer)
+    .webp({ quality: 90 })
+    .toFile(path.join(ASSETS_DIR, "triptico-sabores.webp"));
+
+  await sharp(cleanTriptychBuffer)
     .resize(1000, 1000, {
       fit: "contain",
-      background: { r: 245, g: 238, b: 226, alpha: 1 },
+      background: { r: 251, g: 247, b: 239, alpha: 1 },
     })
-    .webp({ quality: 88 })
+    .webp({ quality: 90 })
     .toFile(path.join(GALERIA_DIR, "degustacion-tres-sabores.webp"));
 
-  // 4. Story / Legend Graphic (847x853)
+  // 6. Story / Legend & Chef Graphics
   await sharp(FILES.legend)
     .webp({ quality: 88 })
     .toFile(path.join(ASSETS_DIR, "leyenda-medovik.webp"));
 
-  // Close-up of the honey-layered slice on porcelain plate (bottom of legend graphic)
-  await sharp(FILES.legend)
-    .extract({ left: 95, top: 380, width: 670, height: 460 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "clasico-porcion.webp"));
-
-  // 5. Chef & FAQ Graphic (852x851)
   await sharp(FILES.chefFaq)
     .webp({ quality: 88 })
     .toFile(path.join(ASSETS_DIR, "chef-faq.webp"));
 
-  // Portrait of the pastry chef in Medovik Mérida chef jacket
   await sharp(FILES.chefFaq)
     .extract({ left: 0, top: 155, width: 350, height: 515 })
     .resize(700, 1030, { fit: "cover", position: "top" })
     .webp({ quality: 88 })
     .toFile(path.join(ASSETS_DIR, "chef-portrait.webp"));
 
-  // 6. Official Menu Graphic (638x851 / 673x842)
-  await sharp(FILES.menu1)
-    .webp({ quality: 90 })
+  // 7. Official Menu Graphic (updated to the new 3x3 menu source)
+  await sharp(FILES.menu3x3)
+    .webp({ quality: 92 })
     .toFile(path.join(ASSETS_DIR, "menu-oficial.webp"));
 
-  // Slices from the menu graphic for Porción Caramelo Salado & Porción Spartak
-  // Menu1 is 638x851:
-  // Row 1 (Caramelo Salado): y ~ 205..395, left side has whole cake + slice (x: 18..270)
-  await sharp(FILES.menu1)
-    .extract({ left: 15, top: 205, width: 255, height: 195 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "caramelo-salado-porcion.webp"));
-
-  // Row 2 (Spartak): y ~ 405..590, right side has whole cake + slice (x: 375..625)
-  await sharp(FILES.menu1)
-    .extract({ left: 375, top: 400, width: 250, height: 195 })
-    .resize(1000, 1000, { fit: "cover", position: "centre" })
-    .webp({ quality: 88 })
-    .toFile(path.join(GALERIA_DIR, "spartak-porcion.webp"));
-
-  // Also copy all galeria images into public/images for the Supabase migration script
+  // 8. Mirror all 12 galeria WebP images into public/images/
   const galeriaFiles = [
     "caramelo-salado-grande.webp",
     "caramelo-salado-mediano.webp",
@@ -220,12 +216,10 @@ async function main() {
   ];
 
   for (const f of galeriaFiles) {
-    await sharp(path.join(GALERIA_DIR, f))
-      .webp({ quality: 86 })
-      .toFile(path.join(IMAGES_DIR, f));
+    await copyFile(path.join(GALERIA_DIR, f), path.join(IMAGES_DIR, f));
   }
 
-  console.log("✅ All Medovik Mérida brand & product WebP images generated successfully.");
+  console.log("✅ All Medovik Mérida clean text-free product WebP & PNG images generated successfully.");
 }
 
 main().catch((err) => {

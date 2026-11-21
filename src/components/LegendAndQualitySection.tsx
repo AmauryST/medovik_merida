@@ -142,8 +142,8 @@ export function LegendEditorialSection() {
             <div className="col-span-7 overflow-hidden rounded-2xl border border-dorado-suave/60 bg-blanco-calido shadow-sm">
               <div className="relative aspect-[4/5] w-full">
                 <Image
-                  src="/assets/leyenda-medovik.webp"
-                  alt="La leyenda imperial del pastel ruso Medovik en el siglo XVIII"
+                  src="/images/clasico-porcion.webp?v=20261121"
+                  alt="Rebanada artesanal de 8 capas de miel natural del pastel ruso Medovik Clásico"
                   fill
                   sizes="(max-width: 1024px) 55vw, 320px"
                   className="object-cover"
@@ -154,7 +154,7 @@ export function LegendEditorialSection() {
               <div className="overflow-hidden rounded-2xl border border-dorado-suave/60 bg-blanco-calido shadow-sm">
                 <div className="relative aspect-[3/4] w-full">
                   <Image
-                    src="/assets/triptico-sabores.webp"
+                    src="/assets/triptico-sabores.webp?v=20261121"
                     alt="Tríptico de los 3 sabores artesanales de Medovik Mérida"
                     fill
                     sizes="(max-width: 1024px) 40vw, 240px"
