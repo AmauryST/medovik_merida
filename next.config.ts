@@ -37,6 +37,7 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   images: {
+    unoptimized: true,
     localPatterns: [
       {
         pathname: "/images/**",
